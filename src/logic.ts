@@ -39,6 +39,9 @@ export function move(gameState: GameState): MoveResponse {
         possibleMoves.down = false
     } else if (myNeck.y > myHead.y) {
         possibleMoves.up = false
+    } 
+    if (myHead.x = 2,myHead.y=1) {
+        possibleMoves.right = true
     }
 
     // TODO: Step 1 - Don't hit walls.
