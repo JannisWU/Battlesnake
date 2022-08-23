@@ -29,6 +29,7 @@ export function move(gameState: GameState): MoveResponse {
     }
 
     // Step 0: Don't let your Battlesnake move back on it's own neck
+    const maxHeight = 4
     const myHead = gameState.you.head
     const myNeck = gameState.you.body[1]
     if (myNeck.x < myHead.x) {
@@ -42,7 +43,7 @@ export function move(gameState: GameState): MoveResponse {
     } 
     if (myHead.x = 4){
         possibleMoves.right = false
-    } else if (myHead.y = 4){
+    } else if (myHead.y = maxHeight){
         possibleMoves.up = false
     } else if (myHead.x = 0){
         possibleMoves.left = false
