@@ -5,9 +5,9 @@ export function info(): InfoResponse {
     const response: InfoResponse = {
         apiversion: "1",
         author: "",
-        color: "#888888",
-        head: "default",
-        tail: "default"
+        color: "#fff400",
+        head: "bendr",
+        tail: "skinny"
     }
     return response
 }
