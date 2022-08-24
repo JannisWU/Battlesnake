@@ -49,7 +49,9 @@ export function move(gameState: GameState): MoveResponse {
         possibleMoves.left = false
     } else if (myHead.y < 1){
         possibleMoves.down = false
-    } else if (myHead.y < 1 && myHead.x < 1){
+    }
+    
+    if (myHead.y < 1 && myHead.x < 1){
         possibleMoves.down = false
         possibleMoves.left = false 
     } else if (myHead.y > 3 && myHead.x < 1){
