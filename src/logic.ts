@@ -130,20 +130,20 @@ export function move(gameState: GameState): MoveResponse {
     const foods = gameState.board.food
     const hunger = gameState.you.health
 
-    
+    var hungermode: boolean = false
+        if (hunger < 40) {
+            var hungermode = true 
+        }
+
 
     for(var i = 0; i < foods.length; i++){
         const food = foods[i]
-    if (hunger < 40){
-        var foodmode = true
-        
-    if (gameState.board.food.length != 0 && foodmode === true) {
+    if (gameState.board.food.length != 0 && hungermode === true) {
     var isRight: boolean = false
     var isLeft: boolean = false
     var isUp: boolean = false
     var isDown: boolean = false 
-    }
-    }
+    
     if (food.x > myHead.x){
         isRight = true
     } else if (food.x < myHead.x){
