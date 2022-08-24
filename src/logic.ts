@@ -126,15 +126,7 @@ export function move(gameState: GameState): MoveResponse {
     } else if (food.y < myHead.y){
         isDown = true
     }
-    if (isRight = true){
-        possibleMoves.right = true
-    } else if (isLeft = true){
-        possibleMoves.left = true
-    } else if (isUp = true){
-        possibleMoves.up = true
-    } else if (isDown = true){
-        possibleMoves.down = true
-    }
+
     if (isRight === true && isUp === true){
         possibleMoves.left = false 
         possibleMoves.down = false
@@ -146,6 +138,23 @@ export function move(gameState: GameState): MoveResponse {
         possibleMoves.up = false
     }else if (isLeft === true && isDown === true){
         possibleMoves.right = false 
+        possibleMoves.up = false
+    }
+    if (isRight = true){
+        possibleMoves.left = false
+        possibleMoves.up = false 
+        possibleMoves.down = false  
+    } else if (isLeft = true){
+        possibleMoves.right = false
+        possibleMoves.up = false
+        possibleMoves.down = false
+    } else if (isUp = true){
+        possibleMoves.right = false
+        possibleMoves.left = false
+        possibleMoves.down = false
+    } else if (isDown = true){
+        possibleMoves.left = false
+        possibleMoves.right = false
         possibleMoves.up = false
     }
     }
