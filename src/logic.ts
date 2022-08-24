@@ -56,6 +56,7 @@ export function move(gameState: GameState): MoveResponse {
     } else if (myHead.y === 0){
         possibleMoves.down = false
     }
+
     if (myHead.y === 0 && myHead.x === 0){
         possibleMoves.down = false
         possibleMoves.left = false 
@@ -74,7 +75,7 @@ export function move(gameState: GameState): MoveResponse {
     // Use information in gameState to prevent your Battlesnake from colliding with itself.
     // const mybody = gameState.you.body
     const mybody = gameState.you.body 
-    if (myHead.x === mybody - 1){
+    if (myHead.x === - 1){
 
     }
 
