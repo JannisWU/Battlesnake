@@ -87,9 +87,9 @@ export function move(gameState: GameState): MoveResponse {
     }
 
     if (mybody3.x === myHead.x - 1){
-        possibleMoves.right = false 
-    } else if (mybody3.x === myHead.x + 1){
         possibleMoves.left = false 
+    } else if (mybody3.x === myHead.x + 1){
+        possibleMoves.right = false 
     } else if (mybody3.y === myHead.y - 1){
         possibleMoves.down = false
     } else if (mybody3.y === myHead.y + 1){
