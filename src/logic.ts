@@ -29,10 +29,6 @@ export function move(gameState: GameState): MoveResponse {
     }
 
     // Step 0: Don't let your Battlesnake move back on it's own neck
-    const maxHeight = gameState.board.width
-    const maxWidth = gameState.board.height
-    const minHeight = 0
-    const minWidth = 0
     const myHead = gameState.you.head
     const myNeck = gameState.you.body[1]
     if (myNeck.x < myHead.x) {
@@ -66,6 +62,7 @@ export function move(gameState: GameState): MoveResponse {
         possibleMoves.down = false
         possibleMoves.right = false
     }
+
 
 
     // TODO: Step 1 - Don't hit walls.
