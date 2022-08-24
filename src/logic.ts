@@ -140,23 +140,7 @@ export function move(gameState: GameState): MoveResponse {
         possibleMoves.right = false 
         possibleMoves.up = false
     }
-    if (isRight = true){
-        possibleMoves.left = false
-        possibleMoves.up = false 
-        possibleMoves.down = false  
-    } else if (isLeft = true){
-        possibleMoves.right = false
-        possibleMoves.up = false
-        possibleMoves.down = false
-    } else if (isUp = true){
-        possibleMoves.right = false
-        possibleMoves.left = false
-        possibleMoves.down = false
-    } else if (isDown = true){
-        possibleMoves.left = false
-        possibleMoves.right = false
-        possibleMoves.up = false
-    }
+    
     }
     }
     // Finally, choose a move from the available safe moves.
