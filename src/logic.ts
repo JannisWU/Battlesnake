@@ -43,7 +43,7 @@ export function move(gameState: GameState): MoveResponse {
     } 
     if (myHead.x = 4){
         possibleMoves.right = false
-    } else if (myHead.y = 4){
+    } else if (myHead.y = maxHeight){
         possibleMoves.up = false
     } else if (myHead.x = 0){
         possibleMoves.left = false
