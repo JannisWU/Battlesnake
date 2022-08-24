@@ -175,7 +175,7 @@ export function move(gameState: GameState): MoveResponse {
     if (hungermode = false){
         var looping: boolean = true   
         if (looping = true){
-            possibleMoves.right = true
+            possibleMoves.right = false
         }
     }
     
