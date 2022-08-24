@@ -127,7 +127,50 @@ export function move(gameState: GameState): MoveResponse {
 
     // TODO: Step 4 - Find food.
     // Use information in gameState to seek out and find food.
+    const foods = gameState.board.food
+    const hunger = gameState.you.health
+
     
+
+    for(var i = 0; i < foods.length; i++){
+        const food = foods[i]
+    if (hunger < 40){
+        var foodmode = true
+        
+    if (gameState.board.food.length != 0 && foodmode === true) {
+    var isRight: boolean = false
+    var isLeft: boolean = false
+    var isUp: boolean = false
+    var isDown: boolean = false 
+    }
+    }
+    if (food.x > myHead.x){
+        isRight = true
+    } else if (food.x < myHead.x){
+        isLeft = true
+    } 
+
+    if (food.y > myHead.y){
+        isUp = true
+    } else if (food.y < myHead.y){
+        isDown = true
+    }
+
+    if (isRight === true && isUp === true){
+        possibleMoves.left = false 
+        possibleMoves.down = false
+    } else if (isLeft === true && isUp === true){
+        possibleMoves.right = false 
+        possibleMoves.down = false
+    } else if (isRight === true && isDown === true){
+        possibleMoves.left = false 
+        possibleMoves.up = false
+    } else if (isLeft === true && isDown === true){
+        possibleMoves.right = false 
+        possibleMoves.up = false
+    } 
+    }
+    }
     // Finally, choose a move from the available safe moves.
     // TODO: Step 5 - Select a move to make based on strategy, rather than random.
     const safeMoves = Object.keys(possibleMoves).filter(key => possibleMoves[key])
