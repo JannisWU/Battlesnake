@@ -173,30 +173,19 @@ export function move(gameState: GameState): MoveResponse {
     }
 
     if (hungermode = false){
-        if (myHead.y > 5){
-            possibleMoves.down = false
-            possibleMoves.left = false 
-            possibleMoves.up = false
-        } else if (myHead.x > 6){
-            possibleMoves.right = false
-            possibleMoves.left = false 
-            possibleMoves.up = false
-        } else if (myHead.y < 3){
-            possibleMoves.down = false
-            possibleMoves.right = false 
-            possibleMoves.up = false
-        }else if (myHead.x < 3){
-            possibleMoves.down = false
-            possibleMoves.left = false 
-            possibleMoves.right = false
+        var looping: boolean = true   
+        if (looping = true){
+            possibleMoves.right = true
         }
     }
+    
     // Finally, choose a move from the available safe moves.
     // TODO: Step 5 - Select a move to make based on strategy, rather than random.
     const safeMoves = Object.keys(possibleMoves).filter(key => possibleMoves[key])
     const response: MoveResponse = {
         move: safeMoves[Math.floor(Math.random() * safeMoves.length)],
     }
+
 
     console.log(`${gameState.game.id} MOVE ${gameState.turn}: ${response.move}`)
     return response
