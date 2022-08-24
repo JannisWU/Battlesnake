@@ -147,13 +147,16 @@ export function move(gameState: GameState): MoveResponse {
     if (isRight === true && isUp === true){
         possibleMoves.left = false 
         possibleMoves.down = false
-    } else if (isLeft === true && isUp === true){
+    }
+    if (isLeft === true && isUp === true){
         possibleMoves.right = false 
         possibleMoves.down = false
-    } else if (isRight === true && isDown === true){
+    } 
+    if (isRight === true && isDown === true){
         possibleMoves.left = false 
         possibleMoves.up = false
-    }else if (isLeft === true && isDown === true){
+    }
+    if (isLeft === true && isDown === true){
         possibleMoves.right = false 
         possibleMoves.up = false
     }
