@@ -88,18 +88,18 @@ export function move(gameState: GameState): MoveResponse {
 
     // TODO: Step 3 - Don't collide with others.
     // Use information in gameState to prevent your Battlesnake from colliding with others.
-    const anotherSnakes = gameState.board.snakes
+    const boardSnakes = gameState.board.snakes
 
-    for(var i = 0 ; i < anotherSnakes.length; i++) {
-        const anotherSnake = anotherSnakes [i]
+    for(var i = 0 ; i < boardSnakes.length; i++) {
+        const boardSnake = boardSnakes [i]
 
-    if (anotherSnake.body.some (Coord => Coord.x === myHead.x - 1 && Coord.y === myHead.y )){
+    if (boardSnake.body.some (Coord => Coord.x === myHead.x - 1 && Coord.y === myHead.y )){
         possibleMoves.right = false
-    } else if (anotherSnake.body.some(Coord => Coord.x === myHead.x + 1 && Coord.y === myHead.y)){
+    } else if (boardSnake.body.some(Coord => Coord.x === myHead.x + 1 && Coord.y === myHead.y)){
         possibleMoves.left = false
-    } else if (anotherSnake.body.some(Coord => Coord.x  === myHead.x && Coord.y === myHead.y + 1)){
+    } else if (boardSnake.body.some(Coord => Coord.x  === myHead.x && Coord.y === myHead.y + 1)){
         possibleMoves.down = false
-    } else if (anotherSnake.body.some(Coord => Coord.x === myHead.x && Coord.y === myHead.y -1 )){
+    } else if (boardSnake.body.some(Coord => Coord.x === myHead.x && Coord.y === myHead.y -1 )){
         possibleMoves.up = false
     }
     }
