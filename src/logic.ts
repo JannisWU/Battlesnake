@@ -93,13 +93,13 @@ export function move(gameState: GameState): MoveResponse {
     for(var i = 0 ;i < boardSnakes.length; i++) {
         const boardSnake = boardSnakes[i]
 
-    if (boardSnake.body.some(Coord => Coord.x === (myHead.x - 1) && Coord.y === myHead.y ) ){
+    if (boardSnake.body.some(Coord => Coord.x === (myHead.x + 1) && Coord.y === myHead.y ) ){
         possibleMoves.right = false
-    } else if (boardSnake.body.some(Coord => Coord.x === (myHead.x + 1) && Coord.y === myHead.y)){
+    } else if (boardSnake.body.some(Coord => Coord.x === (myHead.x - 1) && Coord.y === myHead.y)){
         possibleMoves.left = false
-    } else if (boardSnake.body.some(Coord => Coord.x  === myHead.x && Coord.y === (myHead.y + 1))){
+    } else if (boardSnake.body.some(Coord => Coord.x  === myHead.x && Coord.y === (myHead.y - 1))){
         possibleMoves.down = false
-    } else if (boardSnake.body.some(Coord => Coord.x === myHead.x && Coord.y === (myHead.y -1) )){
+    } else if (boardSnake.body.some(Coord => Coord.x === myHead.x && Coord.y === (myHead.y + 1) )){
         possibleMoves.up = false
     }
     }
