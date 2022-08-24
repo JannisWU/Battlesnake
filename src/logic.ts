@@ -67,6 +67,22 @@ export function move(gameState: GameState): MoveResponse {
         possibleMoves.down = false
     }
 
+    if (myHead.y === 0 && myHead.x === 0){
+        possibleMoves.down = false
+        possibleMoves.left = false 
+    }
+    if (myHead.y === boardHeight - 1 && myHead.x === 0){
+        possibleMoves.left = false
+        possibleMoves.up = false
+    }
+    if (myHead.y === boardHeight - 1 && myHead.x === boardWidth - 1){
+        possibleMoves.right = false
+        possibleMoves.up = false
+    }
+    if (myHead.y === 0 && myHead.x === boardWidth - 1){
+        possibleMoves.down = false
+        possibleMoves.right = false
+    }
     
 
     // TODO: Step 2 - Don't hit yourself.
