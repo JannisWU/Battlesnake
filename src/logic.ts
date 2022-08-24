@@ -121,7 +121,9 @@ export function move(gameState: GameState): MoveResponse {
         isRight = true
     } else if (food.x < myHead.x){
         isLeft = true
-    } else if (food.y > myHead.y){
+    } 
+    
+    if (food.y > myHead.y){
         isUp = true
     } else if (food.y < myHead.y){
         isDown = true
