@@ -78,11 +78,14 @@ export function move(gameState: GameState): MoveResponse {
     
     if (mybody.some(Coord => Coord.x === (myHead.x + 1) && Coord.y === myHead.y) ){
         possibleMoves.right = false 
-    } else if (mybody.some(Coord => Coord.x === (myHead.x - 1) && Coord.y === myHead.y)){
+    } 
+    if (mybody.some(Coord => Coord.x === (myHead.x - 1) && Coord.y === myHead.y)){
         possibleMoves.left = false
-    } else if (mybody.some(Coord => Coord.x  === myHead.x && Coord.y === (myHead.y - 1))){
+    } 
+    if (mybody.some(Coord => Coord.x  === myHead.x && Coord.y === (myHead.y - 1))){
         possibleMoves.down = false
-    } else if (mybody.some(Coord => Coord.x === myHead.x && Coord.y === (myHead.y + 1))){
+    }
+    if (mybody.some(Coord => Coord.x === myHead.x && Coord.y === (myHead.y + 1))){
         possibleMoves.up = false
     }
 
@@ -95,11 +98,14 @@ export function move(gameState: GameState): MoveResponse {
 
     if (boardSnake.body.some(Coord => Coord.x === (myHead.x + 1) && Coord.y === myHead.y ) ){
         possibleMoves.right = false
-    } else if (boardSnake.body.some(Coord => Coord.x === (myHead.x - 1) && Coord.y === myHead.y)){
+    } 
+    if (boardSnake.body.some(Coord => Coord.x === (myHead.x - 1) && Coord.y === myHead.y)){
         possibleMoves.left = false
-    } else if (boardSnake.body.some(Coord => Coord.x  === myHead.x && Coord.y === (myHead.y - 1))){
+    } 
+    if (boardSnake.body.some(Coord => Coord.x  === myHead.x && Coord.y === (myHead.y - 1))){
         possibleMoves.down = false
-    } else if (boardSnake.body.some(Coord => Coord.x === myHead.x && Coord.y === (myHead.y + 1) )){
+    } 
+    if (boardSnake.body.some(Coord => Coord.x === myHead.x && Coord.y === (myHead.y + 1) )){
         possibleMoves.up = false
     }
     }
