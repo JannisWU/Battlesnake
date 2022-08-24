@@ -31,6 +31,7 @@ export function move(gameState: GameState): MoveResponse {
     // Step 0: Don't let your Battlesnake move back on it's own neck
     const myHead = gameState.you.head
     const myNeck = gameState.you.body[1]
+
     if (myNeck.x < myHead.x) {
         possibleMoves.left = false
     } 
@@ -50,16 +51,19 @@ export function move(gameState: GameState): MoveResponse {
     // const boardHeight = gameState.board.height
     const boardWidth = gameState.board.width
     const boardHeight = gameState.board.height
+    const minWidth = 0
+    const minHeight = 0
+
     if (myHead.x === (boardWidth - 1)){
         possibleMoves.right = false
     }
     if (myHead.y === (boardHeight - 1)){
         possibleMoves.up = false
     }
-    if (myHead.x === 0){
+    if (myHead.x === minWidth){
         possibleMoves.left = false
     }
-    if (myHead.y === 0){
+    if (myHead.y === minHeight){
         possibleMoves.down = false
     }
 
@@ -132,16 +136,13 @@ export function move(gameState: GameState): MoveResponse {
     if (isRight === true && isUp === true){
         possibleMoves.left = false 
         possibleMoves.down = false
-    }
-    if (isLeft === true && isUp === true){
+    } else if (isLeft === true && isUp === true){
         possibleMoves.right = false 
         possibleMoves.down = false
-    } 
-    if (isRight === true && isDown === true){
+    } else if (isRight === true && isDown === true){
         possibleMoves.left = false 
         possibleMoves.up = false
-    }
-    if (isLeft === true && isDown === true){
+    } else if (isLeft === true && isDown === true){
         possibleMoves.right = false 
         possibleMoves.up = false
     }
