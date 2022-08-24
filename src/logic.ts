@@ -79,7 +79,7 @@ export function move(gameState: GameState): MoveResponse {
     if (mybody.some(Coord => Coord.x === myHead.x + 1 && Coord.y === myHead.y) ){
         possibleMoves.right = false 
     } else if (mybody.some(Coord => Coord.x === myHead.x - 1 && Coord.y === myHead.y)){
-        possibleMoves.left = false 
+        possibleMoves.left = false
     } else if (mybody.some(Coord => Coord.x  === myHead.x && Coord.y === myHead.y - 1)){
         possibleMoves.down = false
     } else if (mybody.some(Coord => Coord.x === myHead.x && Coord.y === myHead.y + 1)){
@@ -107,7 +107,49 @@ export function move(gameState: GameState): MoveResponse {
 
     // TODO: Step 4 - Find food.
     // Use information in gameState to seek out and find food.
+    const foods = gameState.board.food
 
+    for(var i = 0; i < foods.length; i++){
+        const food = foods[i]
+    if (gameState.board.food.length != 0) {
+    var isRight: boolean = false
+    var isLeft: boolean = false
+    var isUp: boolean = false
+    var isDown: boolean = false 
+    
+    if (food.x > myHead.x){
+        isRight = true
+    } else if (food.x < myHead.x){
+        isLeft = true
+    } else if (food.y > myHead.y){
+        isUp = true
+    } else if (food.y < myHead.y){
+        isDown = true
+    }
+    if (isRight = true){
+        possibleMoves.right = true
+    } else if (isLeft = true){
+        possibleMoves.left = true
+    } else if (isUp = true){
+        possibleMoves.up = true
+    } else if (isDown = true){
+        possibleMoves.down = true
+    }
+    if (isRight === true && isUp === true){
+        possibleMoves.left = false 
+        possibleMoves.down = false
+    } else if (isLeft === true && isUp === true){
+        possibleMoves.right = false 
+        possibleMoves.down = false
+    } else if (isRight === true && isDown === true){
+        possibleMoves.left = false 
+        possibleMoves.up = false
+    }else if (isLeft === true && isDown === true){
+        possibleMoves.right = false 
+        possibleMoves.up = false
+    }
+    }
+    }
     // Finally, choose a move from the available safe moves.
     // TODO: Step 5 - Select a move to make based on strategy, rather than random.
     const safeMoves = Object.keys(possibleMoves).filter(key => possibleMoves[key])
