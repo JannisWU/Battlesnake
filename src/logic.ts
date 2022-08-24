@@ -33,11 +33,14 @@ export function move(gameState: GameState): MoveResponse {
     const myNeck = gameState.you.body[1]
     if (myNeck.x < myHead.x) {
         possibleMoves.left = false
-    } else if (myNeck.x > myHead.x) {
+    } 
+    if (myNeck.x > myHead.x) {
         possibleMoves.right = false
-    } else if (myNeck.y < myHead.y) {
+    }
+    if (myNeck.y < myHead.y) {
         possibleMoves.down = false
-    } else if (myNeck.y > myHead.y) {
+    }
+    if (myNeck.y > myHead.y) {
         possibleMoves.up = false
     } 
 
