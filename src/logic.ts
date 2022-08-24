@@ -131,7 +131,7 @@ export function move(gameState: GameState): MoveResponse {
     const hunger = gameState.you.health
 
     var hungermode: boolean = false
-        if (hunger < 40) {
+        if (hunger < 50) {
             var hungermode = true 
         }
 
@@ -172,12 +172,7 @@ export function move(gameState: GameState): MoveResponse {
     }
     }
 
-    if (hungermode = false){
-        var looping: boolean = true   
-        if (looping = true){
-            possibleMoves.right = false
-        }
-    }
+   
     
     // Finally, choose a move from the available safe moves.
     // TODO: Step 5 - Select a move to make based on strategy, rather than random.
