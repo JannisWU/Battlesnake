@@ -131,7 +131,7 @@ export function move(gameState: GameState): MoveResponse {
     const hunger = gameState.you.health
 
     var hungermode: boolean = false
-        if (hunger < 50) {
+        if (hunger < 60) {
             var hungermode = true 
         }
 
