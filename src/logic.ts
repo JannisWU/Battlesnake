@@ -52,11 +52,14 @@ export function move(gameState: GameState): MoveResponse {
     const boardHeight = gameState.board.height
     if (myHead.x === boardWidth - 1){
         possibleMoves.right = false
-    } else if (myHead.y === boardHeight - 1){
+    }
+    if (myHead.y === boardHeight - 1){
         possibleMoves.up = false
-    } else if (myHead.x === 0){
+    }
+    if (myHead.x === 0){
         possibleMoves.left = false
-    } else if (myHead.y === 0){
+    }
+    if (myHead.y === 0){
         possibleMoves.down = false
     }
 
