@@ -207,49 +207,7 @@ export function move(gameState: GameState): MoveResponse {
     
     // implementing a smarter Movement
 
-    if (hunger > 40){
-        var loopmode = true
-    }
-        if (loopmode = true){
-            var spaceAbove: Number = (boardHeight - myHead.y)
-            var spaceUnder: Number = (myHead.y - minHeight)
-            var spaceRight: Number = (boardWidth - myHead.x)
-            var spaceLeft: Number = (myHead.y - minWidth)
-
-            var spaceAboveGreater: boolean = false 
-            var spaceUnderGreater: boolean = false
-            var spaceRightGreater: boolean = false
-            var spaceLeftGreater: boolean = false
-
-            if (spaceAbove > spaceLeft && spaceAbove > spaceRight && spaceAbove > spaceUnder){
-                var spaceAboveGreater = true 
-            } else if (spaceUnder > spaceLeft && spaceUnder > spaceRight && spaceUnder > spaceAbove){
-                var spaceUnderGreater = true
-            } else if (spaceRight > spaceLeft && spaceRight > spaceAbove && spaceRight > spaceUnder){
-                var spaceRightGreater = true
-            } else if (spaceLeft > spaceUnder && spaceLeft > spaceRight && spaceLeft > spaceAbove){
-                var spaceLeftGreater = true 
-            }
-
-            if (spaceAboveGreater === true){
-            possibleMoves.left = false
-            possibleMoves.right = false
-            possibleMoves.down = false
-            } else if (spaceUnderGreater === true){
-            possibleMoves.left = false
-            possibleMoves.right = false
-            possibleMoves.up = false
-            } else if (spaceRightGreater === true){
-            possibleMoves.left = false
-            possibleMoves.up = false
-            possibleMoves.down = false
-            } else if (spaceLeftGreater === true){
-            possibleMoves.down = false
-            possibleMoves.right = false
-            possibleMoves.up = false
-            }
-            
-        }
+    
     
     // Finally, choose a move from the available safe moves.
     // TODO: Step 5 - Select a move to make based on strategy, rather than random.
