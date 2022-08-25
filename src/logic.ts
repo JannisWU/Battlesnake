@@ -206,7 +206,7 @@ export function move(gameState: GameState): MoveResponse {
     }
     
     // implementing a smarter Movement
-    
+
     if (hunger > 40){
         var loopmode = true
     }
@@ -220,18 +220,15 @@ export function move(gameState: GameState): MoveResponse {
             possibleMoves.left = false
             possibleMoves.right = false
             possibleMoves.down = false
-            }
-            if (spaceUnder > spaceLeft && spaceUnder > spaceRight && spaceUnder > spaceAbove){
+            } else if (spaceUnder > spaceLeft && spaceUnder > spaceRight && spaceUnder > spaceAbove){
             possibleMoves.left = false
             possibleMoves.right = false
             possibleMoves.up = false
-            }
-            if (spaceRight > spaceLeft && spaceRight > spaceAbove && spaceRight > spaceUnder){
+            } else if (spaceRight > spaceLeft && spaceRight > spaceAbove && spaceRight > spaceUnder){
             possibleMoves.left = false
             possibleMoves.up = false
             possibleMoves.down = false
-            }
-            if (spaceLeft > spaceUnder && spaceLeft > spaceRight && spaceLeft > spaceAbove){
+            } else if (spaceLeft > spaceUnder && spaceLeft > spaceRight && spaceLeft > spaceAbove){
             possibleMoves.down = false
             possibleMoves.right = false
             possibleMoves.up = false
