@@ -147,15 +147,15 @@ export function move(gameState: GameState): MoveResponse {
     
     
 
-    if (gameState.board.food[0].x > myHead.x){
+    if (foods[0].x > myHead.x){
         isRight = true
-    } else if (gameState.board.food[0].x < myHead.x){
+    } else if (foods[0].x < myHead.x){
         isLeft = true
     } 
 
-    if (gameState.board.food[0].y > myHead.y){
+    if (foods[0].y > myHead.y){
         isUp = true
-    } else if (gameState.board.food[0].y < myHead.y){
+    } else if (foods[0].y < myHead.y){
         isDown = true
     }
 
@@ -175,15 +175,15 @@ export function move(gameState: GameState): MoveResponse {
         possibleMoves.left = false 
         possibleMoves.down = false 
         possibleMoves.up = false
-    }else if (isLeft === true){
+    } else if (isLeft === true){
         possibleMoves.right = false 
         possibleMoves.down = false 
         possibleMoves.up = false
-    }else if (isUp === true){
+    } else if (isUp === true){
         possibleMoves.left = false 
         possibleMoves.down = false 
         possibleMoves.right = false
-    }else if (isDown === true){
+    } else if (isDown === true){
         possibleMoves.left = false 
         possibleMoves.right = false 
         possibleMoves.up = false
@@ -194,8 +194,18 @@ export function move(gameState: GameState): MoveResponse {
         var loopmode = true
     }
     if (loopmode = true){
-        
+        var spaceAbove: Number = (boardHeight - myHead.y)
+        var spaceUnder: Number = (myHead.y - minHeight)
+        var spaceRight: Number = (boardWidth - myHead.x)
+        var spaceLeft: Number = (myHead.y - minWidth)
+
+        if (spaceAbove > spaceLeft && spaceRight && spaceUnder)
+            possibleMoves.left = false
+            possibleMoves.right = false
+            possibleMoves.down = false
         }
+
+
     // Finally, choose a move from the available safe moves.
     // TODO: Step 5 - Select a move to make based on strategy, rather than random.
     const safeMoves = Object.keys(possibleMoves).filter(key => possibleMoves[key])
