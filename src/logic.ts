@@ -136,6 +136,8 @@ export function move(gameState: GameState): MoveResponse {
             var hungermode = true 
         }
 
+
+    for(var i = 0; i < foods.length; i++){
         const food = foods[i]
     if (gameState.board.food.length != 0 && hungermode === true) {
     var isRight: boolean = false
@@ -171,7 +173,7 @@ export function move(gameState: GameState): MoveResponse {
         possibleMoves.up = false
     } 
     }
-    
+    }
     if (hungermode = false){
         var loopmode = true
     }
