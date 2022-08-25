@@ -124,6 +124,7 @@ export function move(gameState: GameState): MoveResponse {
     }
     }
     
+    // Avoiding Hazards
     const boardHazard = gameState.board.hazards
 
     if (boardHazard.some(Coord => Coord.x === (myHead.x + 1) && Coord.y === myHead.y ) ){
@@ -204,8 +205,38 @@ export function move(gameState: GameState): MoveResponse {
     }
     }
     
+    // implementing a smarter Movement
     
-    
+    if (hunger > 40){
+        var loopmode = true
+    }
+        if (loopmode = true){
+            var spaceAbove: Number = (boardHeight - myHead.y)
+            var spaceUnder: Number = (myHead.y - minHeight)
+            var spaceRight: Number = (boardWidth - myHead.x)
+            var spaceLeft: Number = (myHead.y - minWidth)
+
+            if (spaceAbove > spaceLeft && spaceAbove > spaceRight && spaceAbove > spaceUnder){
+            possibleMoves.left = false
+            possibleMoves.right = false
+            possibleMoves.down = false
+            }
+            if (spaceUnder > spaceLeft && spaceUnder > spaceRight && spaceUnder > spaceAbove){
+            possibleMoves.left = false
+            possibleMoves.right = false
+            possibleMoves.up = false
+            }
+            if (spaceRight > spaceLeft && spaceRight > spaceAbove && spaceRight > spaceUnder){
+            possibleMoves.left = false
+            possibleMoves.up = false
+            possibleMoves.down = false
+            }
+            if (spaceLeft > spaceUnder && spaceLeft > spaceRight && spaceLeft > spaceAbove){
+            possibleMoves.down = false
+            possibleMoves.right = false
+            possibleMoves.up = false
+            }
+    }
     
     // Finally, choose a move from the available safe moves.
     // TODO: Step 5 - Select a move to make based on strategy, rather than random.
