@@ -202,18 +202,15 @@ export function move(gameState: GameState): MoveResponse {
             possibleMoves.left = false
             possibleMoves.right = false
             possibleMoves.down = false
-            }
-            if (spaceUnder > spaceLeft && spaceRight && spaceAbove){
+            } else if (spaceUnder > spaceLeft && spaceRight && spaceAbove){
             possibleMoves.left = false
             possibleMoves.right = false
             possibleMoves.up = false
-            }
-            if (spaceRight > spaceLeft && spaceAbove && spaceUnder){
+            } else if (spaceRight > spaceLeft && spaceAbove && spaceUnder){
             possibleMoves.left = false
             possibleMoves.up = false
             possibleMoves.down = false
-            } 
-            if (spaceLeft > spaceUnder && spaceRight && spaceAbove){
+            } else if (spaceLeft > spaceUnder && spaceRight && spaceAbove){
             possibleMoves.down = false
             possibleMoves.right = false
             possibleMoves.up = false
