@@ -134,7 +134,7 @@ export function move(gameState: GameState): MoveResponse {
     var hungermode: boolean = false
         if (hunger < 40) {
             var hungermode = true 
-            var loopmode = false
+            var loopmode: boolean = false
         }
 
 
@@ -191,7 +191,7 @@ export function move(gameState: GameState): MoveResponse {
     
     
     if (hungermode = false){
-        var loopmode = true
+        var loopmode: boolean = true
         if (loopmode = true){
             var spaceAbove: Number = (boardHeight - myHead.y)
             var spaceUnder: Number = (myHead.y - minHeight)
