@@ -138,8 +138,7 @@ export function move(gameState: GameState): MoveResponse {
         }
 
 
-    for(var i = 0; i < foods.length; i++){
-        const food = foods[i]
+    
     if (gameState.board.food.length != 0 && hungermode === true) {
     var isRight: boolean = false
     var isLeft: boolean = false
@@ -148,15 +147,15 @@ export function move(gameState: GameState): MoveResponse {
     
     
 
-    if (food.x > myHead.x){
+    if (gameState.board.food[0].x > myHead.x){
         isRight = true
-    } else if (food.x < myHead.x){
+    } else if (gameState.board.food[0].x < myHead.x){
         isLeft = true
     } 
 
-    if (food.y > myHead.y){
+    if (gameState.board.food[0].y > myHead.y){
         isUp = true
-    } else if (food.y < myHead.y){
+    } else if (gameState.board.food[0].y < myHead.y){
         isDown = true
     }
 
@@ -190,7 +189,7 @@ export function move(gameState: GameState): MoveResponse {
         possibleMoves.up = false
     }
     }
-    }
+    
     if (hungermode = false){
         var loopmode = true
     }
