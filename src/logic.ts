@@ -124,6 +124,21 @@ export function move(gameState: GameState): MoveResponse {
     }
     }
     
+    const boardHazard = gameState.board.hazards
+
+    if (boardHazard.some(Coord => Coord.x === (myHead.x + 1) && Coord.y === myHead.y ) ){
+        possibleMoves.right = false
+    } 
+    if (boardHazard.some(Coord => Coord.x === (myHead.x - 1) && Coord.y === myHead.y)){
+        possibleMoves.left = false
+    } 
+    if (boardHazard.some(Coord => Coord.x  === myHead.x && Coord.y === (myHead.y - 1))){
+        possibleMoves.down = false
+    } 
+    if (boardHazard.some(Coord => Coord.x === myHead.x && Coord.y === (myHead.y + 1) )){
+        possibleMoves.up = false
+    }
+    
 
     // TODO: Step 4 - Find food.
     // Use information in gameState to seek out and find food.
