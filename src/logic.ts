@@ -138,7 +138,7 @@ export function move(gameState: GameState): MoveResponse {
 
 
     
-        if (gameState.board.food.length != 0 && hungermode === true) {
+    if (gameState.board.food.length != 0 && hungermode === true) {
         var isRight: boolean = false
         var isLeft: boolean = false
         var isUp: boolean = false
@@ -189,36 +189,7 @@ export function move(gameState: GameState): MoveResponse {
     }
     }
     
-    if (hunger > 40){
-        var loopmode = true
-    }
-        if (loopmode = true){
-            var spaceAbove: Number = (boardHeight - myHead.y)
-            var spaceUnder: Number = (myHead.y - minHeight)
-            var spaceRight: Number = (boardWidth - myHead.x)
-            var spaceLeft: Number = (myHead.y - minWidth)
-
-            if (spaceAbove > spaceLeft && spaceAbove > spaceRight && spaceAbove > spaceUnder){
-            possibleMoves.left = false
-            possibleMoves.right = false
-            possibleMoves.down = false
-            }
-            if (spaceUnder > spaceLeft && spaceUnder > spaceRight && spaceUnder > spaceAbove){
-            possibleMoves.left = false
-            possibleMoves.right = false
-            possibleMoves.up = false
-            }
-            if (spaceRight > spaceLeft && spaceRight > spaceAbove && spaceRight > spaceUnder){
-            possibleMoves.left = false
-            possibleMoves.up = false
-            possibleMoves.down = false
-            }
-            if (spaceLeft > spaceUnder && spaceLeft > spaceRight && spaceLeft > spaceAbove){
-            possibleMoves.down = false
-            possibleMoves.right = false
-            possibleMoves.up = false
-            }
-    }
+    
     
     
     // Finally, choose a move from the available safe moves.
