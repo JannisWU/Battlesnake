@@ -132,7 +132,7 @@ export function move(gameState: GameState): MoveResponse {
     
 
     var hungermode: boolean = false
-        if (hunger < 60) {
+        if (hunger < 40) {
             var hungermode = true 
             var loopmode = false
         }
@@ -188,11 +188,11 @@ export function move(gameState: GameState): MoveResponse {
         possibleMoves.right = false 
         possibleMoves.up = false
     }
-    }
+    
     
     if (hungermode = false){
         var loopmode = true
-    }
+    
     if (loopmode = true){
         var spaceAbove: Number = (boardHeight - myHead.y)
         var spaceUnder: Number = (myHead.y - minHeight)
@@ -217,8 +217,8 @@ export function move(gameState: GameState): MoveResponse {
             possibleMoves.up = false
         }
     }
-
-
+    }
+    }
     // Finally, choose a move from the available safe moves.
     // TODO: Step 5 - Select a move to make based on strategy, rather than random.
     const safeMoves = Object.keys(possibleMoves).filter(key => possibleMoves[key])
