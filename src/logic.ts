@@ -199,11 +199,27 @@ export function move(gameState: GameState): MoveResponse {
         var spaceRight: Number = (boardWidth - myHead.x)
         var spaceLeft: Number = (myHead.y - minWidth)
 
-        if (spaceAbove > spaceLeft && spaceRight && spaceUnder)
+        if (spaceAbove > spaceLeft && spaceRight && spaceUnder){
             possibleMoves.left = false
             possibleMoves.right = false
             possibleMoves.down = false
         }
+        if (spaceUnder > spaceLeft && spaceRight && spaceAbove){
+            possibleMoves.left = false
+            possibleMoves.right = false
+            possibleMoves.up = false
+        }
+        if (spaceRight > spaceLeft && spaceAbove && spaceUnder){
+            possibleMoves.left = false
+            possibleMoves.up = false
+            possibleMoves.down = false
+        }
+        if (spaceLeft > spaceUnder && spaceRight && spaceAbove){
+            possibleMoves.down = false
+            possibleMoves.right = false
+            possibleMoves.up = false
+        }
+    }
 
 
     // Finally, choose a move from the available safe moves.
