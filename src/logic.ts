@@ -191,8 +191,7 @@ export function move(gameState: GameState): MoveResponse {
     }
     
     if (hungermode = false){
-        var loopmode: boolean = true
-        if (loopmode = true){
+        
             var spaceAbove: Number = (boardHeight - myHead.y)
             var spaceUnder: Number = (myHead.y - minHeight)
             var spaceRight: Number = (boardWidth - myHead.x)
@@ -219,7 +218,7 @@ export function move(gameState: GameState): MoveResponse {
             possibleMoves.up = false
             }
     }
-    }
+    
     
     // Finally, choose a move from the available safe moves.
     // TODO: Step 5 - Select a move to make based on strategy, rather than random.
@@ -228,7 +227,7 @@ export function move(gameState: GameState): MoveResponse {
         move: safeMoves[Math.floor(Math.random() * safeMoves.length)],
     }
 
-
     console.log(`${gameState.game.id} MOVE ${gameState.turn}: ${response.move}`)
     return response
+ 
 }
