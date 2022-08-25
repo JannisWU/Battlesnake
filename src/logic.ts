@@ -139,21 +139,21 @@ export function move(gameState: GameState): MoveResponse {
 
 
     
-    if (gameState.board.food.length != 0 && hungermode === true) {
-    var isRight: boolean = false
-    var isLeft: boolean = false
-    var isUp: boolean = false
-    var isDown: boolean = false 
+        if (gameState.board.food.length != 0 && hungermode === true) {
+        var isRight: boolean = false
+        var isLeft: boolean = false
+        var isUp: boolean = false
+        var isDown: boolean = false 
     
     
 
     if (foods[0].x > myHead.x){
         isRight = true
     } else if (foods[0].x < myHead.x){
-        isLeft = true
+     isLeft = true
     } 
 
-    if (foods[0].y > myHead.y){
+        if (foods[0].y > myHead.y){
         isUp = true
     } else if (foods[0].y < myHead.y){
         isDown = true
@@ -191,7 +191,9 @@ export function move(gameState: GameState): MoveResponse {
     }
     
     if (hungermode = false){
-        
+        loopmode = true
+    }
+        if (loopmode = true){
             var spaceAbove: Number = (boardHeight - myHead.y)
             var spaceUnder: Number = (myHead.y - minHeight)
             var spaceRight: Number = (boardWidth - myHead.x)
