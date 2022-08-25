@@ -192,30 +192,32 @@ export function move(gameState: GameState): MoveResponse {
     
     if (hungermode = false){
         var loopmode = true
-    
-    if (loopmode = true){
-        var spaceAbove: Number = (boardHeight - myHead.y)
-        var spaceUnder: Number = (myHead.y - minHeight)
-        var spaceRight: Number = (boardWidth - myHead.x)
-        var spaceLeft: Number = (myHead.y - minWidth)
+        if (loopmode = true){
+            var spaceAbove: Number = (boardHeight - myHead.y)
+            var spaceUnder: Number = (myHead.y - minHeight)
+            var spaceRight: Number = (boardWidth - myHead.x)
+            var spaceLeft: Number = (myHead.y - minWidth)
 
-        if (spaceAbove > spaceLeft && spaceRight && spaceUnder){
+            if (spaceAbove > spaceLeft && spaceRight && spaceUnder){
             possibleMoves.left = false
             possibleMoves.right = false
             possibleMoves.down = false
-        } else if (spaceUnder > spaceLeft && spaceRight && spaceAbove){
+            }
+            if (spaceUnder > spaceLeft && spaceRight && spaceAbove){
             possibleMoves.left = false
             possibleMoves.right = false
             possibleMoves.up = false
-        } else if (spaceRight > spaceLeft && spaceAbove && spaceUnder){
+            }
+            if (spaceRight > spaceLeft && spaceAbove && spaceUnder){
             possibleMoves.left = false
             possibleMoves.up = false
             possibleMoves.down = false
-        } else if (spaceLeft > spaceUnder && spaceRight && spaceAbove){
+            } 
+            if (spaceLeft > spaceUnder && spaceRight && spaceAbove){
             possibleMoves.down = false
             possibleMoves.right = false
             possibleMoves.up = false
-        }
+            }
     }
     }
     }
