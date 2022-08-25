@@ -129,14 +129,13 @@ export function move(gameState: GameState): MoveResponse {
     // Use information in gameState to seek out and find food.
     const foods = gameState.board.food
     const hunger = gameState.you.health
+    
 
     var hungermode: boolean = false
         if (hunger < 60) {
             var hungermode = true 
         }
 
-
-    for(var i = 0; i < foods.length; i++){
         const food = foods[i]
     if (gameState.board.food.length != 0 && hungermode === true) {
     var isRight: boolean = false
@@ -144,6 +143,8 @@ export function move(gameState: GameState): MoveResponse {
     var isUp: boolean = false
     var isDown: boolean = false 
     
+    
+
     if (food.x > myHead.x){
         isRight = true
     } else if (food.x < myHead.x){
@@ -170,12 +171,12 @@ export function move(gameState: GameState): MoveResponse {
         possibleMoves.up = false
     } 
     }
-    }
+    
     if (hungermode = false){
         var loopmode = true
     }
     if (loopmode = true){
-        gameState.you.shout = "loopmode an" 
+        
         }
     // Finally, choose a move from the available safe moves.
     // TODO: Step 5 - Select a move to make based on strategy, rather than random.
