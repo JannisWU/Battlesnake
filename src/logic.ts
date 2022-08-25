@@ -171,9 +171,12 @@ export function move(gameState: GameState): MoveResponse {
     } 
     }
     }
-
-   
-    
+    if (hungermode = false){
+        var loopmode = true
+    }
+    if (loopmode = true){
+        gameState.you.shout = "loopmode an" 
+        }
     // Finally, choose a move from the available safe moves.
     // TODO: Step 5 - Select a move to make based on strategy, rather than random.
     const safeMoves = Object.keys(possibleMoves).filter(key => possibleMoves[key])
