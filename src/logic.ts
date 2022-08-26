@@ -215,6 +215,9 @@ export function move(gameState: GameState): MoveResponse {
             if (myHead.x === (boardWidth - 1) && myHead.y === (boardHeight - 1)) {
                 possibleMoves.up = false
                 possibleMoves.right = false
+            } else if (myHead.x === (boardWidth - 1) && myHead.y === minHeight) {
+                possibleMoves.right = false
+                possibleMoves.down = false
             } else if (myHead.x === (boardWidth - 1)) {
                 possibleMoves.left = false  
                 possibleMoves.right = false
