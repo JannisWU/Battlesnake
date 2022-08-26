@@ -206,12 +206,7 @@ export function move(gameState: GameState): MoveResponse {
     }
     
     // implementing a smarter Movement
-    if (hungermode = false){
-        if (myHead.x < 5 && myHead.y < 5){
-            possibleMoves.up = false
-            possibleMoves.right = false
-        }
-    }
+    
 
 
 
