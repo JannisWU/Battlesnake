@@ -208,7 +208,7 @@ export function move(gameState: GameState): MoveResponse {
     }
     
     // implementing a smarter Movement
-    if (hunger > 40){
+    if (hunger === 40){
         var chasetail = true
         
         if (chasetail = true) {
@@ -255,22 +255,7 @@ export function move(gameState: GameState): MoveResponse {
                 possibleMoves.right = false
             }
 
-            for(var i = 0 ;i < boardSnakes.length; i++) {
-                const boardSnake = boardSnakes[i]
-        
-            if (boardSnake.body.some(Coord => Coord.x === (myHead.x + 1) && Coord.y === myHead.y ) ){
-                possibleMoves.right = false
-            } 
-            if (boardSnake.body.some(Coord => Coord.x === (myHead.x - 1) && Coord.y === myHead.y)){
-                possibleMoves.left = false
-            } 
-            if (boardSnake.body.some(Coord => Coord.x  === myHead.x && Coord.y === (myHead.y - 1))){
-                possibleMoves.down = false
-            } 
-            if (boardSnake.body.some(Coord => Coord.x === myHead.x && Coord.y === (myHead.y + 1) )){
-                possibleMoves.up = false
-            }
-            }
+            
 
             if (myHead.x === (boardWidth - 1) && myHead.y === (boardHeight - 1)) {
                 possibleMoves.down = false
