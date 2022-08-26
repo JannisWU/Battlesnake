@@ -154,7 +154,7 @@ export function move(gameState: GameState): MoveResponse {
 
 
     
-    if (gameState.board.food.length != 0) {
+    if (gameState.board.food.length != 0 && hungermode === true) {
         var isRight: boolean = false
         var isLeft: boolean = false
         var isUp: boolean = false
@@ -206,6 +206,12 @@ export function move(gameState: GameState): MoveResponse {
     }
     
     // implementing a smarter Movement
+    if (hungermode = false){
+        if (myHead.x < 5 && myHead.y < 5){
+            possibleMoves.up = false
+            possibleMoves.right = false
+        }
+    }
 
 
 
