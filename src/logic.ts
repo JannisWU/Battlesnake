@@ -245,15 +245,16 @@ export function move(gameState: GameState): MoveResponse {
                 possibleMoves.left = false
                 possibleMoves.up = false
                 possibleMoves.down = false
-            } else if (mybody.some(Coord => Coord.x === (myHead.x + 1) && Coord.y === myHead.y) ){
-                possibleMoves.right = false 
-            } else if (mybody.some(Coord => Coord.x === (myHead.x - 1) && Coord.y === myHead.y)){
-                possibleMoves.left = false
-            } else if (mybody.some(Coord => Coord.x  === myHead.x && Coord.y === (myHead.y - 1))){
-                    possibleMoves.down = false
-            } else if (mybody.some(Coord => Coord.x === myHead.x && Coord.y === (myHead.y + 1))){
-                possibleMoves.up = false
-            } else if (myHead.y != (boardHeight - 1)){
+            }  else if (myHead.y != (boardHeight - 1)){
+                if (mybody.some(Coord => Coord.x === (myHead.x + 1) && Coord.y === myHead.y) ){
+                    possibleMoves.right = false 
+                } else if (mybody.some(Coord => Coord.x === (myHead.x - 1) && Coord.y === myHead.y)){
+                    possibleMoves.left = false
+                } else if (mybody.some(Coord => Coord.x  === myHead.x && Coord.y === (myHead.y - 1))){
+                        possibleMoves.down = false
+                } else if (mybody.some(Coord => Coord.x === myHead.x && Coord.y === (myHead.y + 1))){
+                    possibleMoves.up = false
+                }
                 possibleMoves.left = false 
                 possibleMoves.right = false
             } else if (myHead.x != (boardWidth - 1)){
