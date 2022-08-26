@@ -154,7 +154,7 @@ export function move(gameState: GameState): MoveResponse {
 
 
     
-    if (gameState.board.food.length != 0 && hungermode === true) {
+    if (gameState.board.food.length != 0 === true) {
         var isRight: boolean = false
         var isLeft: boolean = false
         var isUp: boolean = false
