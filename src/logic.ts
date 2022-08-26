@@ -240,11 +240,11 @@ export function move(gameState: GameState): MoveResponse {
                 possibleMoves.up = false
                 possibleMoves.down = false
             } else if (myHead.y != (boardHeight - 1)){
-                possibleMoves.down = false 
-                possibleMoves.up = false
-            } else if (myHead.x != (boardWidth - 1)){
                 possibleMoves.left = false 
                 possibleMoves.right = false
+            } else if (myHead.x != (boardWidth - 1)){
+                possibleMoves.down = false 
+                possibleMoves.up = false
             }
             
         }
