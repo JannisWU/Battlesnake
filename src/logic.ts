@@ -146,7 +146,7 @@ export function move(gameState: GameState): MoveResponse {
     const foods = gameState.board.food
     const hunger = gameState.you.health
     
-    var loopmode: boolean = false
+    var chasetail: boolean = false
     var hungermode: boolean = false
         if (hunger < 40) {
             var hungermode = true 
@@ -206,7 +206,19 @@ export function move(gameState: GameState): MoveResponse {
     }
     
     // implementing a smarter Movement
-    
+    if (hunger > 40){
+        var chasetail = true
+        
+        if (chasetail = true) {
+            if (myHead.x != 0 && myHead.y != 0){
+                possibleMoves.up = false
+                possibleMoves.right != false
+            }
+
+        }
+
+    }
+
 
 
 
