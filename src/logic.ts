@@ -220,9 +220,6 @@ export function move(gameState: GameState): MoveResponse {
                 possibleMoves.left = false 
                 possibleMoves.down = false 
                 possibleMoves.right = false
-            } else if (myHead.x != (boardWidth - 1)){
-                possibleMoves.down = false 
-                possibleMoves.up = false
             } else if (myHead.x === (minWidth) && myHead.y === (boardHeight - 1)) {
                 possibleMoves.up = false 
                 possibleMoves.left = false 
@@ -230,9 +227,6 @@ export function move(gameState: GameState): MoveResponse {
             } else if (myHead.y === (boardHeight - 1)) {
                 possibleMoves.up = false 
                 possibleMoves.down = false 
-                possibleMoves.right = false
-            } else if (myHead.x != (boardWidth - 1)){
-                possibleMoves.left = false 
                 possibleMoves.right = false
             } else if (myHead.x === (minWidth) && myHead.y === minHeight) {
                 possibleMoves.up = false
