@@ -211,7 +211,18 @@ export function move(gameState: GameState): MoveResponse {
         var chasetail = true
         
         if (chasetail = true) {
-            
+            if (mybody.some(Coord => Coord.x === (myHead.x + 1) && Coord.y === myHead.y) ){
+                possibleMoves.right = false 
+            } 
+            if (mybody.some(Coord => Coord.x === (myHead.x - 1) && Coord.y === myHead.y)){
+                possibleMoves.left = false
+            } 
+            if (mybody.some(Coord => Coord.x  === myHead.x && Coord.y === (myHead.y - 1))){
+                possibleMoves.down = false
+            }
+            if (mybody.some(Coord => Coord.x === myHead.x && Coord.y === (myHead.y + 1))){
+                possibleMoves.up = false
+            }
             
             if (myHead.x === (boardWidth - 1) && myHead.y === (boardHeight - 1)) {
                 possibleMoves.down = false
@@ -252,7 +263,7 @@ export function move(gameState: GameState): MoveResponse {
     }
 
 
-
+    //angular tour of heroes 
 
     // Finally, choose a move from the available safe moves.
     // TODO: Step 5 - Select a move to make based on strategy, rather than random.
