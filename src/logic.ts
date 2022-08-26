@@ -245,9 +245,7 @@ export function move(gameState: GameState): MoveResponse {
                 possibleMoves.left = false
                 possibleMoves.up = false
                 possibleMoves.down = false
-            } 
-
-            if (mybody.some(Coord => Coord.x === (myHead.x + 1) && Coord.y === myHead.y) ){
+            } else if (mybody.some(Coord => Coord.x === (myHead.x + 1) && Coord.y === myHead.y) ){
                 possibleMoves.right = false 
             } else if (mybody.some(Coord => Coord.x === (myHead.x - 1) && Coord.y === myHead.y)){
                 possibleMoves.left = false
