@@ -208,7 +208,7 @@ export function move(gameState: GameState): MoveResponse {
     }
     
     // implementing a smarter Movement
-    if (hunger === 40){
+    if (hunger > 40){
         var chasetail = true
         
         if (chasetail = true) {
