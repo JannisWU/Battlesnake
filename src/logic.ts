@@ -207,53 +207,7 @@ export function move(gameState: GameState): MoveResponse {
     
     // implementing a smarter Movement
 
-    if (hungermode = false){
-        var spaceAbove: Number = (boardHeight - myHead.y)
-        var spaceUnder: Number = (myHead.y - minHeight)
-        var spaceRight: Number = (boardWidth - myHead.x)
-        var spaceLeft: Number = (myHead.x - minWidth)
-
-        var spaceAboveIsGreater: boolean = false
-        var spaceUnderIsGreater: boolean = false
-        var spaceRightIsGreater: boolean = false
-        var spaceLeftIsGreater: boolean = false 
-        
-        if (spaceAbove > spaceUnder && spaceAbove > spaceRight && spaceAbove > spaceLeft){
-            var spaceAboveIsGreater = true
-        } else if (spaceUnder > spaceAbove && spaceUnder > spaceRight && spaceUnder > spaceLeft){
-            var spaceUnderIsGreater = true 
-        } else if (spaceRight > spaceAbove && spaceRight > spaceUnder && spaceRight > spaceLeft){
-            var spaceRightIsGreater = true 
-        } else if (spaceLeft > spaceAbove && spaceLeft > spaceUnder && spaceLeft > spaceRight){
-            var spaceLeftIsGreater = true
-        }
-
-        if (spaceAboveIsGreater === true){
-            if (mybody.some(Coord => Coord.x != myHead.x && Coord.y != (myHead.y + 1))){
-            possibleMoves.left = false
-            possibleMoves.right = false
-            possibleMoves.down = false
-            }
-        } else if (spaceUnderIsGreater === true){
-                if (mybody.some(Coord => Coord.x  != myHead.x && Coord.y != (myHead.y - 1))){
-                possibleMoves.left = false
-                possibleMoves.right = false
-                possibleMoves.up = false
-                }
-        } else if (spaceRightIsGreater === true){
-                if (mybody.some(Coord => Coord.x != (myHead.x + 1) && Coord.y != myHead.y)){
-                possibleMoves.left = false
-                possibleMoves.up = false
-                possibleMoves.down = false
-        }
-        } else if (spaceLeftIsGreater === true){
-                if (mybody.some(Coord => Coord.x != (myHead.x - 1) && Coord.y != myHead.y)){
-                possibleMoves.down = false
-                possibleMoves.right = false
-                possibleMoves.up = false
-        }
-        }
-    }
+    
 
     // Finally, choose a move from the available safe moves.
     // TODO: Step 5 - Select a move to make based on strategy, rather than random.
