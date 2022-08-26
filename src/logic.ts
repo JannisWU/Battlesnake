@@ -245,14 +245,16 @@ export function move(gameState: GameState): MoveResponse {
                 possibleMoves.left = false
                 possibleMoves.up = false
                 possibleMoves.down = false
+        }
         } else if (spaceLeftIsGreater === true){
-                if (mybody.some(Coord => Coord.x != (myHead.x - 1) && Coord.y != myHead.y))
+                if (mybody.some(Coord => Coord.x != (myHead.x - 1) && Coord.y != myHead.y)){
                 possibleMoves.down = false
                 possibleMoves.right = false
                 possibleMoves.up = false
-         }
+        }
+        }
     }
-}
+
     // Finally, choose a move from the available safe moves.
     // TODO: Step 5 - Select a move to make based on strategy, rather than random.
     const safeMoves = Object.keys(possibleMoves).filter(key => possibleMoves[key])
