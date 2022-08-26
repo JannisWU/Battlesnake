@@ -154,7 +154,7 @@ export function move(gameState: GameState): MoveResponse {
 
 
     
-    if (gameState.board.food.length != 0 === true) {
+    if (gameState.board.food.length != 0) {
         var isRight: boolean = false
         var isLeft: boolean = false
         var isUp: boolean = false
@@ -186,28 +186,12 @@ export function move(gameState: GameState): MoveResponse {
     } else if (isLeft === true && isDown === true){
         possibleMoves.right = false 
         possibleMoves.up = false
-    } else if (isRight === true){
-        possibleMoves.left = false 
-        possibleMoves.down = false 
-        possibleMoves.up = false
-    } else if (isLeft === true){
-        possibleMoves.right = false 
-        possibleMoves.down = false 
-        possibleMoves.up = false
-    } else if (isUp === true){
-        possibleMoves.left = false 
-        possibleMoves.down = false 
-        possibleMoves.right = false
-    } else if (isDown === true){
-        possibleMoves.left = false 
-        possibleMoves.right = false 
-        possibleMoves.up = false
-    }
+    } 
     }
     
     // implementing a smarter Movement
 
-    
+
 
     // Finally, choose a move from the available safe moves.
     // TODO: Step 5 - Select a move to make based on strategy, rather than random.
