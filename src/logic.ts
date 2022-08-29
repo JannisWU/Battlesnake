@@ -6,9 +6,9 @@ export function info(): InfoResponse {
     const response: InfoResponse = {
         apiversion: "1",
         author: "",
-        color: "#fff400",
-        head: "bendr",
-        tail: "skinny"
+        color: "#6d3f00",
+        head: "all-seeing",
+        tail: "comet"
     }
     return response
 }
@@ -240,7 +240,7 @@ export function move(gameState: GameState): MoveResponse {
         
             if (myHead.y === 0 && myHead.x === 0){
                 possibleMoves.down = false
-                possibleMoves.left = false 
+               possibleMoves.left = false 
             }
             if (myHead.y === boardHeight - 1 && myHead.x === 0){
                 possibleMoves.left = false
@@ -265,7 +265,7 @@ export function move(gameState: GameState): MoveResponse {
                 possibleMoves.down = false
                 possibleMoves.left = false  
                 possibleMoves.right = false
-            }  else if (myHead.x === (minWidth) && myHead.y === (boardHeight - 1)) {
+            } else if (myHead.x === (minWidth) && myHead.y === (boardHeight - 1)) {
                 possibleMoves.right = false
                 possibleMoves.up = false 
                 possibleMoves.left = false
@@ -273,7 +273,7 @@ export function move(gameState: GameState): MoveResponse {
                 possibleMoves.right = false
                 possibleMoves.up = false 
                 possibleMoves.down = false 
-            }  else if (myHead.x === (minWidth) && myHead.y === minHeight) {
+            } else if (myHead.x === (minWidth) && myHead.y === minHeight) {
                 possibleMoves.up = false
                 possibleMoves.down = false
                 possibleMoves.left = false
@@ -291,7 +291,6 @@ export function move(gameState: GameState): MoveResponse {
                 possibleMoves.down = false
             } 
 
-            
         }
 
     }
