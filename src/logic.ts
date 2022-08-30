@@ -366,7 +366,7 @@ export function move(gameState: GameState): MoveResponse {
                 possibleMoves.down = false
             }
             }
-            if (gameState.you.body.length > 47 ){
+            if (gameState.you.body.length > 23 ){
             if (mybody.some(Coord => Coord.x === (myHead.x + 1) && Coord.y === myHead.y) ){
                 possibleMoves.right = false 
             } 
