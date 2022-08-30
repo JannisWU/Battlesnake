@@ -150,7 +150,7 @@ export function move(gameState: GameState): MoveResponse {
     
     var chasetail: boolean = false
     var hungermode: boolean = false
-        if (hunger < 10) {
+        if (hunger < 30) {
             var hungermode = true 
         }
 
@@ -208,7 +208,7 @@ export function move(gameState: GameState): MoveResponse {
     }
     
     // implementing a smarter Movement
-    if (hunger > 10){
+    if (hunger > 30){
         var chasetail = true
         
         if (chasetail = true) {
