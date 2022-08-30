@@ -330,43 +330,8 @@ export function move(gameState: GameState): MoveResponse {
             }
             }
 
-            if (gameState.you.body.length > 38 ){
-            
-            if (myHead.x === (boardWidth - 3) && myHead.y === (boardHeight - 3)) {
-                possibleMoves.down = false
-                possibleMoves.up = false
-                possibleMoves.right = false
-            } else if (myHead.x === (boardWidth - 3)) {
-                possibleMoves.down = false
-                possibleMoves.left = false  
-                possibleMoves.right = false
-            } else if (myHead.x === (2) && myHead.y === (boardHeight - 3)) {
-                possibleMoves.right = false
-                possibleMoves.up = false 
-                possibleMoves.left = false
-            } else if (myHead.y === (boardHeight - 3)) {
-                possibleMoves.right = false
-                possibleMoves.up = false 
-                possibleMoves.down = false 
-            } else if (myHead.x === (2) && myHead.y === 2) {
-                possibleMoves.up = false
-                possibleMoves.down = false
-                possibleMoves.left = false
-            } else if(myHead.x === (2)){
-                possibleMoves.up = false
-                possibleMoves.right = false
-                possibleMoves.left = false
-            } else if (myHead.x === (boardWidth - 3) && myHead.y === 2) {
-                possibleMoves.left = false
-                possibleMoves.right = false
-                possibleMoves.down = false
-            } else if (myHead.y === (2)){
-                possibleMoves.left = false
-                possibleMoves.up = false
-                possibleMoves.down = false
-            }
-            }
-            if (gameState.you.body.length > 23 ){
+        
+            if (gameState.you.body.length > (boardWidth + boardHeight + (boardWidth - 1)+ (boardHeight - 2)) ){
             if (mybody.some(Coord => Coord.x === (myHead.x + 1) && Coord.y === myHead.y) ){
                 possibleMoves.right = false 
             } 
