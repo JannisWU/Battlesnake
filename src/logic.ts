@@ -256,7 +256,7 @@ export function move(gameState: GameState): MoveResponse {
             }
 
 
-            if (gameState.you.body.length < 23){
+            if (gameState.you.body.length < 24){
             if (myHead.x === (boardWidth - 1) && myHead.y === (boardHeight - 1)) {
                 possibleMoves.down = false
                 possibleMoves.up = false
@@ -292,7 +292,7 @@ export function move(gameState: GameState): MoveResponse {
             }
             }
 
-            if (gameState.you.body.length === 23){
+            if (gameState.you.body.length === 24){
 
             if (mybody.some(Coord => Coord.x === (myHead.x + 1) && Coord.y === myHead.y) ){
                 possibleMoves.right = false 
@@ -308,7 +308,7 @@ export function move(gameState: GameState): MoveResponse {
             }
             }
 
-            if (gameState.you.body.length > 23 && gameState.you.body.length < 38){
+            if (gameState.you.body.length > 24 && gameState.you.body.length < 38){
             
             if (myHead.x === (boardWidth - 2) && myHead.y === (boardHeight - 2)) {
                 possibleMoves.down = false
