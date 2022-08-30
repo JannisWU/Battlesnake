@@ -330,22 +330,6 @@ export function move(gameState: GameState): MoveResponse {
             }
             }
 
-            if (gameState.you.body.length === 38){
-                
-                if (mybody.some(Coord => Coord.x === (myHead.x + 1) && Coord.y === myHead.y) ){
-                    possibleMoves.right = false 
-                } 
-                if (mybody.some(Coord => Coord.x === (myHead.x - 1) && Coord.y === myHead.y)){
-                    possibleMoves.left = false
-                } 
-                if (mybody.some(Coord => Coord.x  === myHead.x && Coord.y === (myHead.y - 1))){
-                    possibleMoves.down = false
-                }
-                if (mybody.some(Coord => Coord.x === myHead.x && Coord.y === (myHead.y + 1))){
-                    possibleMoves.up = false
-                }
-                }
-
             if (gameState.you.body.length > 38 ){
             
             if (myHead.x === (boardWidth - 3) && myHead.y === (boardHeight - 3)) {
