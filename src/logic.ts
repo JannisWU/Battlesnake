@@ -352,7 +352,7 @@ export function move(gameState: GameState): MoveResponse {
                 possibleMoves.down = false
                 possibleMoves.up = false
                 possibleMoves.right = false
-             } else if (myHead.x === (boardWidth - 3)) {
+            } else if (myHead.x === (boardWidth - 3)) {
                 possibleMoves.down = false
                 possibleMoves.left = false  
                 possibleMoves.right = false
@@ -382,7 +382,42 @@ export function move(gameState: GameState): MoveResponse {
                 possibleMoves.down = false
             }
             }
-
+            if (gameState.you.body.length > 47 ){
+            
+            if (myHead.x === (boardWidth - 4) && myHead.y === (boardHeight - 4)) {
+                possibleMoves.down = false
+                possibleMoves.up = false
+                possibleMoves.right = false
+            } else if (myHead.x === (boardWidth - 4)) {
+                possibleMoves.down = false
+                possibleMoves.left = false  
+                possibleMoves.right = false
+            } else if (myHead.x === (3) && myHead.y === (boardHeight - 4)) {
+                possibleMoves.right = false
+                possibleMoves.up = false 
+                possibleMoves.left = false
+            } else if (myHead.y === (boardHeight - 4)) {
+                possibleMoves.right = false
+                possibleMoves.up = false 
+                possibleMoves.down = false 
+            } else if (myHead.x === (3) && myHead.y === 3) {
+                possibleMoves.up = false
+                possibleMoves.down = false
+                possibleMoves.left = false
+            } else if(myHead.x === (3)){
+                possibleMoves.up = false
+                possibleMoves.right = false
+                possibleMoves.left = false
+            } else if (myHead.x === (boardWidth - 4) && myHead.y === 3) {
+                possibleMoves.left = false
+                possibleMoves.right = false
+                possibleMoves.down = false
+            } else if (myHead.y === (3)){
+                possibleMoves.left = false
+                possibleMoves.up = false
+                possibleMoves.down = false
+            }
+            }
         }
 
     }
