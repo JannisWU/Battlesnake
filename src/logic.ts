@@ -366,41 +366,20 @@ export function move(gameState: GameState): MoveResponse {
                 possibleMoves.down = false
             }
             }
-            if (gameState.you.body.length > 46 ){
-            
-            if (myHead.x === (boardWidth - 4) && myHead.y === (boardHeight - 4)) {
-                possibleMoves.down = false
-                possibleMoves.up = false
-                possibleMoves.right = false
-            } else if (myHead.x === (boardWidth - 4)) {
-                possibleMoves.down = false
-                possibleMoves.left = false  
-                possibleMoves.right = false
-            } else if (myHead.x === (3) && myHead.y === (boardHeight - 4)) {
-                possibleMoves.right = false
-                possibleMoves.up = false 
+            if (gameState.you.body.length > 47 ){
+            if (mybody.some(Coord => Coord.x === (myHead.x + 1) && Coord.y === myHead.y) ){
+                possibleMoves.right = false 
+            } 
+            if (mybody.some(Coord => Coord.x === (myHead.x - 1) && Coord.y === myHead.y)){
                 possibleMoves.left = false
-            } else if (myHead.y === (boardHeight - 4)) {
-                possibleMoves.right = false
-                possibleMoves.up = false 
-                possibleMoves.down = false 
-            } else if (myHead.x === (3) && myHead.y === 3) {
-                possibleMoves.up = false
-                possibleMoves.down = false
-                possibleMoves.left = false
-            } else if(myHead.x === (3)){
-                possibleMoves.up = false
-                possibleMoves.right = false
-                possibleMoves.left = false
-            } else if (myHead.x === (boardWidth - 4) && myHead.y === 3) {
-                possibleMoves.left = false
-                possibleMoves.right = false
-                possibleMoves.down = false
-            } else if (myHead.y === (3)){
-                possibleMoves.left = false
-                possibleMoves.up = false
+            } 
+            if (mybody.some(Coord => Coord.x  === myHead.x && Coord.y === (myHead.y - 1))){
                 possibleMoves.down = false
             }
+            if (mybody.some(Coord => Coord.x === myHead.x && Coord.y === (myHead.y + 1))){
+                possibleMoves.up = false
+            }
+            
             }
         }
 
