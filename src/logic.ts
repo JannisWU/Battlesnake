@@ -150,7 +150,7 @@ export function move(gameState: GameState): MoveResponse {
     
     var chasetail: boolean = false
     var hungermode: boolean = false
-        if (hunger < 40) {
+        if (hunger < 10) {
             var hungermode = true 
         }
 
@@ -208,7 +208,7 @@ export function move(gameState: GameState): MoveResponse {
     }
     
     // implementing a smarter Movement
-    if (hunger > 40){
+    if (hunger > 10){
         var chasetail = true
         
         if (chasetail = true) {
@@ -291,7 +291,7 @@ export function move(gameState: GameState): MoveResponse {
                 possibleMoves.down = false
             }
             }
-            if (gameState.you.body.length > 24 ){
+            if (gameState.you.body.length > 24 && gameState.you.body.length < 41){
             
             if (myHead.x === (boardWidth - 2) && myHead.y === (boardHeight - 2)) {
                 possibleMoves.down = false
