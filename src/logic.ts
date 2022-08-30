@@ -212,49 +212,62 @@ export function move(gameState: GameState): MoveResponse {
         var chasetail = true
         
         if (chasetail = true) {
-            
+            if (mybody.some(Coord => Coord.x === (myHead.x + 1) && Coord.y === myHead.y) ){
+                possibleMoves.right = false 
+            } 
+            if (mybody.some(Coord => Coord.x === (myHead.x - 1) && Coord.y === myHead.y)){
+                possibleMoves.left = false
+            } 
+            if (mybody.some(Coord => Coord.x  === myHead.x && Coord.y === (myHead.y - 1))){
+                possibleMoves.down = false
+            }
+            if (mybody.some(Coord => Coord.x === myHead.x && Coord.y === (myHead.y + 1))){
+                possibleMoves.up = false
+            }
 
             if (myHead.x === (boardWidth - 1)){
                 possibleMoves.right = false
-            } else if (myHead.y === (boardHeight - 1)){
+            }
+            if (myHead.y === (boardHeight - 1)){
                 possibleMoves.up = false
-            } else if (myHead.x === minWidth){
+            }
+            if (myHead.x === minWidth){
                 possibleMoves.left = false
-            } else if (myHead.y === minHeight){
+            }
+            if (myHead.y === minHeight){
                 possibleMoves.down = false
-            } else if (myHead.y === 0 && myHead.x === 0){
+            }
+        
+            if (myHead.y === 0 && myHead.x === 0){
                 possibleMoves.down = false
                possibleMoves.left = false 
-            } else if (myHead.y === boardHeight - 1 && myHead.x === 0){
+            }
+            if (myHead.y === boardHeight - 1 && myHead.x === 0){
                 possibleMoves.left = false
                 possibleMoves.up = false
-            } else if (myHead.y === boardHeight - 1 && myHead.x === boardWidth - 1){
+            }
+            if (myHead.y === boardHeight - 1 && myHead.x === boardWidth - 1){
                 possibleMoves.right = false
                 possibleMoves.up = false
-            } else if (myHead.y === 0 && myHead.x === boardWidth - 1){
+            }
+            if (myHead.y === 0 && myHead.x === boardWidth - 1){
                 possibleMoves.down = false
                 possibleMoves.right = false
-            } else if (mybody.some(Coord => Coord.x === (myHead.x + 1) && Coord.y === myHead.y) ){
-                possibleMoves.right = false 
-            } else if (mybody.some(Coord => Coord.x === (myHead.x - 1) && Coord.y === myHead.y)){
-                possibleMoves.left = false
-            } else if (mybody.some(Coord => Coord.x  === myHead.x && Coord.y === (myHead.y - 1))){
-                possibleMoves.down = false
-            } else if (mybody.some(Coord => Coord.x === myHead.x && Coord.y === (myHead.y + 1))){
-                possibleMoves.up = false
-            } else if (mybody.some(Coord => Coord.x === (myHead.x + 1) && Coord.y === myHead.y)){
+            }
+
+            if (mybody.some(Coord => Coord.x === (myHead.x + 2) && Coord.y === myHead.y)){
                 possibleMoves.left = false
                 possibleMoves.right = false
                 possibleMoves.down = false
-            } else if (mybody.some(Coord => Coord.x === (myHead.x - 1) && Coord.y === myHead.y)){
+            } else if (mybody.some(Coord => Coord.x === (myHead.x - 2) && Coord.y === myHead.y)){
                 possibleMoves.up = false
                 possibleMoves.right = false
                 possibleMoves.left = false
-            } else if (mybody.some(Coord => Coord.x  === myHead.x && Coord.y === (myHead.y - 1))){
+            } else if (mybody.some(Coord => Coord.x  === myHead.x && Coord.y === (myHead.y - 2))){
                 possibleMoves.left = false
                 possibleMoves.up = false
                 possibleMoves.down = false
-            } else if (mybody.some(Coord => Coord.x === myHead.x && Coord.y === (myHead.y + 1))){
+            } else if (mybody.some(Coord => Coord.x === myHead.x && Coord.y === (myHead.y + 2))){
                 possibleMoves.right = false
                 possibleMoves.up = false 
                 possibleMoves.down = false
