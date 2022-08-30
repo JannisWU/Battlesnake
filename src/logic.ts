@@ -1,5 +1,5 @@
 import { addSyntheticLeadingComment } from "typescript"
-import { InfoResponse, GameState, MoveResponse, Game } from "./types"
+import { InfoResponse, GameState, MoveResponse, Game, Coord } from "./types"
 
 export function info(): InfoResponse {
     console.log("INFO")
@@ -55,7 +55,6 @@ export function move(gameState: GameState): MoveResponse {
     const minWidth = 0
     const minHeight = 0
 
-    
     if (myHead.x === (boardWidth - 1)){
         possibleMoves.right = false
     }
@@ -68,79 +67,36 @@ export function move(gameState: GameState): MoveResponse {
     if (myHead.y === minHeight){
         possibleMoves.down = false
     }
-
     if (myHead.y === 0 && myHead.x === 0){
         possibleMoves.down = false
-        possibleMoves.left = false 
+       possibleMoves.left = false 
     }
-    if (myHead.y === boardHeight - 1 && myHead.x === 0){
+    if (myHead.y === (boardHeight - 1) && myHead.x === 0){
         possibleMoves.left = false
         possibleMoves.up = false
     }
-    if (myHead.y === boardHeight - 1 && myHead.x === boardWidth - 1){
+    if (myHead.y === (boardHeight - 1) && myHead.x === (boardWidth - 1)){
         possibleMoves.right = false
         possibleMoves.up = false
     }
-    if (myHead.y === 0 && myHead.x === boardWidth - 1){
+    if (myHead.y === 0 && myHead.x === (boardWidth - 1)){
         possibleMoves.down = false
         possibleMoves.right = false
     }
-    
 
     // TODO: Step 2 - Don't hit yourself.
     // Use information in gameState to prevent your Battlesnake from colliding with itself.
     // const mybody = gameState.you.body
     const mybody = gameState.you.body
-    
-    if (mybody.some(Coord => Coord.x === (myHead.x + 1) && Coord.y === myHead.y) ){
-        possibleMoves.right = false 
-    } 
-    if (mybody.some(Coord => Coord.x === (myHead.x - 1) && Coord.y === myHead.y)){
-        possibleMoves.left = false
-    } 
-    if (mybody.some(Coord => Coord.x  === myHead.x && Coord.y === (myHead.y - 1))){
-        possibleMoves.down = false
-    }
-    if (mybody.some(Coord => Coord.x === myHead.x && Coord.y === (myHead.y + 1))){
-        possibleMoves.up = false
-    }
+
+    possibleMoves = avoidMe(gameState, myHead, possibleMoves)
 
     // TODO: Step 3 - Don't collide with others.
     // Use information in gameState to prevent your Battlesnake from colliding with others.
-    const boardSnakes = gameState.board.snakes
-
-    for(var i = 0 ;i < boardSnakes.length; i++) {
-        const boardSnake = boardSnakes[i]
-
-    if (boardSnake.body.some(Coord => Coord.x === (myHead.x + 1) && Coord.y === myHead.y ) ){
-        possibleMoves.right = false
-    } 
-    if (boardSnake.body.some(Coord => Coord.x === (myHead.x - 1) && Coord.y === myHead.y)){
-        possibleMoves.left = false
-    } 
-    if (boardSnake.body.some(Coord => Coord.x  === myHead.x && Coord.y === (myHead.y - 1))){
-        possibleMoves.down = false
-    } 
-    if (boardSnake.body.some(Coord => Coord.x === myHead.x && Coord.y === (myHead.y + 1) )){
-        possibleMoves.up = false
-    }
-    }
+    possibleMoves = avoidOtherSnakes(gameState, myHead, possibleMoves)
     
     // Avoiding Hazards
-    const boardHazard = gameState.board.hazards
-
-    if (boardHazard.some(Coord => Coord.x === (myHead.x + 1) && Coord.y === myHead.y ) ){
-        possibleMoves.right = false
-    } 
-    if (boardHazard.some(Coord => Coord.x === (myHead.x - 1) && Coord.y === myHead.y)){
-        possibleMoves.left = false
-    } 
-    if (boardHazard.some(Coord => Coord.x  === myHead.x && Coord.y === (myHead.y - 1))){
-        possibleMoves.down = false
-    } 
-    if (boardHazard.some(Coord => Coord.x === myHead.x && Coord.y === (myHead.y + 1) )){
-        possibleMoves.up = false
-    }
+    avoidHazards(gameState, myHead, possibleMoves)
     
 
     // TODO: Step 4 - Find food.
@@ -148,19 +104,19 @@ export function move(gameState: GameState): MoveResponse {
     const foods = gameState.board.food
     const hunger = gameState.you.health
     
-    var chasetail: boolean = false
-    var hungermode: boolean = false
+    let chasetail: boolean = false
+    let hungermode: boolean = false
         if (hunger < 30) {
-            var hungermode = true 
+            hungermode = true
         }
 
 
     
     if (gameState.board.food.length != 0 && hungermode === true) {
-        var isRight: boolean = false
-        var isLeft: boolean = false
-        var isUp: boolean = false
-        var isDown: boolean = false 
+        let isRight: boolean = false
+        let isLeft: boolean = false
+        let isUp: boolean = false
+        let isDown: boolean = false 
     
     
 
@@ -209,21 +165,10 @@ export function move(gameState: GameState): MoveResponse {
     
     // implementing a smarter Movement
     if (hunger > 30){
-        var chasetail = true
+        chasetail = true
         
         if (chasetail = true) {
-            if (mybody.some(Coord => Coord.x === (myHead.x + 1) && Coord.y === myHead.y) ){
-                possibleMoves.right = false 
-            } 
-            if (mybody.some(Coord => Coord.x === (myHead.x - 1) && Coord.y === myHead.y)){
-                possibleMoves.left = false
-            } 
-            if (mybody.some(Coord => Coord.x  === myHead.x && Coord.y === (myHead.y - 1))){
-                possibleMoves.down = false
-            }
-            if (mybody.some(Coord => Coord.x === myHead.x && Coord.y === (myHead.y + 1))){
-                possibleMoves.up = false
-            }
+            possibleMoves = avoidMe(gameState, myHead, possibleMoves)
 
             if (myHead.x === (boardWidth - 1)){
                 possibleMoves.right = false
@@ -295,18 +240,7 @@ export function move(gameState: GameState): MoveResponse {
 
             if (gameState.you.body.length > (boardWidth + boardHeight + (boardWidth - 1)+ (boardHeight - 2)) ){
 
-            if (mybody.some(Coord => Coord.x === (myHead.x + 1) && Coord.y === myHead.y) ){
-                possibleMoves.right = false 
-            } 
-            if (mybody.some(Coord => Coord.x === (myHead.x - 1) && Coord.y === myHead.y)){
-                possibleMoves.left = false
-            } 
-            if (mybody.some(Coord => Coord.x  === myHead.x && Coord.y === (myHead.y - 1))){
-                possibleMoves.down = false
-            }
-            if (mybody.some(Coord => Coord.x === myHead.x && Coord.y === (myHead.y + 1))){
-                possibleMoves.up = false
-            }
+            possibleMoves = avoidMe(gameState, myHead, possibleMoves)
             
             if (myHead.x === (boardWidth - 1)){
                 possibleMoves.right = false
@@ -320,7 +254,6 @@ export function move(gameState: GameState): MoveResponse {
             if (myHead.y === minHeight){
                 possibleMoves.down = false
             }
-        
             if (myHead.y === 0 && myHead.x === 0){
                 possibleMoves.down = false
                possibleMoves.left = false 
@@ -356,4 +289,64 @@ export function move(gameState: GameState): MoveResponse {
     console.log(`${gameState.game.id} MOVE ${gameState.turn}: ${response.move}`)
     return response
  
+    
 }
+
+function avoidHazards(gameState: GameState, myHead: Coord, possibleMoves: { [key: string]: boolean }) {
+    const boardHazard = gameState.board.hazards
+
+    if (boardHazard.some(Coord => Coord.x === (myHead.x + 1) && Coord.y === myHead.y)) {
+        possibleMoves.right = false
+    }
+    if (boardHazard.some(Coord => Coord.x === (myHead.x - 1) && Coord.y === myHead.y)) {
+        possibleMoves.left = false
+    }
+    if (boardHazard.some(Coord => Coord.x === myHead.x && Coord.y === (myHead.y - 1))) {
+        possibleMoves.down = false
+    }
+    if (boardHazard.some(Coord => Coord.x === myHead.x && Coord.y === (myHead.y + 1))) {
+        possibleMoves.up = false
+    }
+    return possibleMoves;
+}
+
+function avoidMe(gameState: GameState, myHead: Coord, possibleMoves: { [key: string]: boolean }):{ [key: string]: boolean } {
+    const mybody = gameState.you.body
+
+    if (mybody.some(Coord => Coord.x === (myHead.x + 1) && Coord.y === myHead.y)) {
+        possibleMoves.right = false
+    }
+    if (mybody.some(Coord => Coord.x === (myHead.x - 1) && Coord.y === myHead.y)) {
+        possibleMoves.left = false
+    }
+    if (mybody.some(Coord => Coord.x === myHead.x && Coord.y === (myHead.y - 1))) {
+        possibleMoves.down = false
+    }
+    if (mybody.some(Coord => Coord.x === myHead.x && Coord.y === (myHead.y + 1))) {
+        possibleMoves.up = false
+    }
+    return possibleMoves;
+}
+
+function avoidOtherSnakes(gameState: GameState, myHead: Coord, possibleMoves: { [key: string]: boolean }):{ [key: string]: boolean } {
+    const boardSnakes = gameState.board.snakes
+
+    for (var i = 0; i < boardSnakes.length; i++) {
+        const boardSnake = boardSnakes[i]
+
+    if (boardSnake.body.some(Coord => Coord.x === (myHead.x + 1) && Coord.y === myHead.y)) {
+        possibleMoves.right = false
+    }
+    if (boardSnake.body.some(Coord => Coord.x === (myHead.x - 1) && Coord.y === myHead.y)) {
+        possibleMoves.left = false
+    }
+    if (boardSnake.body.some(Coord => Coord.x === myHead.x && Coord.y === (myHead.y - 1))) {
+        possibleMoves.down = false
+    }
+    if (boardSnake.body.some(Coord => Coord.x === myHead.x && Coord.y === (myHead.y + 1))) {
+        possibleMoves.up = false
+    }
+    }
+    return possibleMoves;
+}
+
