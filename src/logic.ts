@@ -293,7 +293,7 @@ export function move(gameState: GameState): MoveResponse {
             }
 
 
-            if (gameState.you.body.length > 24 && gameState.you.body.length < 38){
+            if (gameState.you.body.length > (boardWidth + boardHeight + (boardWidth - 2)+ (boardHeight - 2)) && gameState.you.body.length < (boardWidth + boardHeight + (boardWidth - 2)+ (boardHeight - 2) + ((boardWidth - 2) + (boardHeight - 2) + (boardWidth - 4)+ (boardHeight - 4)))){
             
             if (myHead.x === (boardWidth - 2) && myHead.y === (boardHeight - 2)) {
                 possibleMoves.down = false
