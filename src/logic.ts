@@ -140,9 +140,6 @@ export function move(gameState: GameState): MoveResponse {
         const mybody = gameState.you.body
 
         if(chasetail = true) {
-            if (myHead.x === (boardWidth - 1) || myHead.x === minWidth || myHead.y === (boardHeight - 1) || myHead.y === minHeight) {
-                possibleMoves = avoidWalls(myHead, boardWidth, possibleMoves, boardHeight, minWidth, minHeight)
-            }
             if ((mybody.some(Coord => Coord.x === (myHead.x - 1) && Coord.y === myHead.y)) && (mybody.some(Coord => Coord.x  === myHead.x && Coord.y === (myHead.y - 1))) && (mybody.some(Coord => Coord.x === myHead.x && Coord.y === (myHead.y + 1)))){
                 possibleMoves.up = false 
                 possibleMoves.down = false
