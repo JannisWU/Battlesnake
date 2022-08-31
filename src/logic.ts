@@ -178,6 +178,11 @@ export function move(gameState: GameState): MoveResponse {
                 possibleMoves.down = false
                 possibleMoves.right = false
                 possibleMoves.left = false
+            } 
+            if (myHead.x = 0){
+                possibleMoves.up = false
+                possibleMoves.right = false
+                possibleMoves.left = false
             }
 
 
