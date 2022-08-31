@@ -135,65 +135,34 @@ export function move(gameState: GameState): MoveResponse {
     }
     
     // implementing a smarter Movement
-    if (hunger > 30){
+    if (gameState.you.body.length > gameState.board.snakes.length){
         chasetail = true
-    
+        const mybody = gameState.you.body
+        
         if(chasetail = true) {
-            if (myHead.x = minWidth){
-                possibleMoves.up = false
-                possibleMoves.right = false
+            possibleMoves = avoidMe(gameState, myHead, possibleMoves) 
+            possibleMoves = avoidWalls(myHead, boardWidth, possibleMoves, boardHeight, minWidth, minHeight)
+            possibleMoves = avoidOtherSnakes(gameState, myHead, possibleMoves)
+            if (mybody.some(Coord => Coord.x === (myHead.x - 1) && Coord.y === myHead.y)){
+                possibleMoves.right = false 
                 possibleMoves.left = false
-            } if (myHead.y = minHeight){
-                possibleMoves.left = false
-                possibleMoves.up = false
+                possibleMoves.up = false 
+            } 
+            if (mybody.some(Coord => Coord.x  === myHead.x && Coord.y === (myHead.y - 1))){
+                possibleMoves.up = false 
                 possibleMoves.down = false
-            } if (myHead.y === minHeight && myHead.x === (boardWidth - 1)){
+                possibleMoves.left = false 
+            } 
+            if (mybody.some(Coord => Coord.x === myHead.x && Coord.y === (myHead.y + 1))){
+                possibleMoves.up = false 
                 possibleMoves.down = false
+                possibleMoves.right = false 
+            } 
+            if (mybody.some(Coord => Coord.x === (myHead.x + 1) && Coord.y === myHead.y)){
+                possibleMoves.left = false 
                 possibleMoves.right = false
-                possibleMoves.left = false
-            } if (myHead.y === 1 && myHead.x === (boardWidth - 1)){
-                possibleMoves.right = false
-                possibleMoves.up = false
-                possibleMoves.down = false
-            } if (myHead.y = 1){
-                possibleMoves.right = false
-                possibleMoves.up = false
-                possibleMoves.down = false
-            } if (myHead.y === 1 && myHead.x === 1){
-                possibleMoves.down = false
-                possibleMoves.right = false
-                possibleMoves.left = false
-            } if (myHead.y = 2){
-                possibleMoves.left = false
-                possibleMoves.up = false
-                possibleMoves.down = false
-            } if (myHead.y === 2 && myHead.x === (boardWidth - 1)){
-                possibleMoves.down = false
-                possibleMoves.right = false
-                possibleMoves.left = false
-            } if (myHead.y = 3){
-                possibleMoves.right = false
-                possibleMoves.up = false
-                possibleMoves.down = false
-            } if (myHead.y === 3 && myHead.x === 1){
-                possibleMoves.down = false
-                possibleMoves.right = false
-                possibleMoves.left = false
-            } if (myHead.y = 4){
-                possibleMoves.left = false
-                possibleMoves.up = false
-                possibleMoves.down = false
-            } if (myHead.y === 4 && myHead.x === (boardWidth - 1)){
-                possibleMoves.down = false
-                possibleMoves.right = false
-                possibleMoves.left = false
-            } if (myHead.y = 5){
-                possibleMoves.right = false
-                possibleMoves.up = false
                 possibleMoves.down = false
             }
-            
-            
         }
 
     
