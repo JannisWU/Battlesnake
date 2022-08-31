@@ -143,39 +143,7 @@ export function move(gameState: GameState): MoveResponse {
          possibleMoves = avoidOtherSnakes(gameState, myHead, possibleMoves)
          possibleMoves = avoidHazards(gameState, myHead, possibleMoves)
          possibleMoves = avoidMe(gameState, myHead, possibleMoves)
-        if (myHead.x === (boardWidth - 1) && myHead.y === (boardHeight - 1)) {
-            possibleMoves.down = false
-            possibleMoves.up = false
-            possibleMoves.right = false
-        } else if (myHead.x === (boardWidth - 1)) {
-            possibleMoves.down = false
-            possibleMoves.left = false  
-            possibleMoves.right = false
-        } else if (myHead.x === (minWidth) && myHead.y === (boardHeight - 1)) {
-            possibleMoves.right = false
-            possibleMoves.up = false 
-            possibleMoves.left = false
-        } else if (myHead.y === (boardHeight - 1)) {
-            possibleMoves.right = false
-            possibleMoves.up = false 
-            possibleMoves.down = false 
-        } else if (myHead.x === (minWidth) && myHead.y === minHeight) {
-            possibleMoves.up = false
-            possibleMoves.down = false
-            possibleMoves.left = false
-        } else if(myHead.x === (minWidth)){
-            possibleMoves.up = false
-            possibleMoves.right = false
-            possibleMoves.left = false
-        } else if (myHead.x === (boardWidth - 1) && myHead.y === minHeight) {
-            possibleMoves.left = false
-            possibleMoves.right = false
-            possibleMoves.down = false
-        } else if (myHead.y === (minHeight)){
-            possibleMoves.left = false
-            possibleMoves.up = false
-            possibleMoves.down = false
-        }
+         possibleMoves = movealongWalls(myHead, boardWidth, boardHeight, possibleMoves, minWidth, minHeight)
         }
 
         if (gameState.you.body.length > (boardWidth + boardHeight + (boardWidth - 1)+ (boardHeight - 2))){
@@ -236,6 +204,43 @@ export function move(gameState: GameState): MoveResponse {
     return response
  
     
+}
+
+function movealongWalls(myHead: Coord, boardWidth: number, boardHeight: number, possibleMoves: { [key: string]: boolean }, minWidth: number, minHeight: number):{ [key: string]: boolean } {
+    if (myHead.x === (boardWidth - 1) && myHead.y === (boardHeight - 1)) {
+        possibleMoves.down = false
+        possibleMoves.up = false
+        possibleMoves.right = false
+    } else if (myHead.x === (boardWidth - 1)) {
+        possibleMoves.down = false
+        possibleMoves.left = false
+        possibleMoves.right = false
+    } else if (myHead.x === (minWidth) && myHead.y === (boardHeight - 1)) {
+        possibleMoves.right = false
+        possibleMoves.up = false
+        possibleMoves.left = false
+    } else if (myHead.y === (boardHeight - 1)) {
+        possibleMoves.right = false
+        possibleMoves.up = false
+        possibleMoves.down = false
+    } else if (myHead.x === (minWidth) && myHead.y === minHeight) {
+        possibleMoves.up = false
+        possibleMoves.down = false
+        possibleMoves.left = false
+    } else if (myHead.x === (minWidth)) {
+        possibleMoves.up = false
+        possibleMoves.right = false
+        possibleMoves.left = false
+    } else if (myHead.x === (boardWidth - 1) && myHead.y === minHeight) {
+        possibleMoves.left = false
+        possibleMoves.right = false
+        possibleMoves.down = false
+    } else if (myHead.y === (minHeight)) {
+        possibleMoves.left = false
+        possibleMoves.up = false
+        possibleMoves.down = false
+    }
+    return possibleMoves;
 }
 
 function avoidWalls(myHead: Coord, boardWidth: number, possibleMoves: { [key: string]: boolean }, boardHeight: number, minWidth: number, minHeight: number): { [key: string]: boolean } {
