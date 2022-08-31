@@ -6,8 +6,8 @@ export function info(): InfoResponse {
     const response: InfoResponse = {
         apiversion: "1",
         author: "",
-        color: "#6d3f00",
-        head: "all-seeing",
+        color: "#d37b00",
+        head: "sand-worm",
         tail: "comet"
     }
     return response
@@ -141,6 +141,10 @@ export function move(gameState: GameState): MoveResponse {
 
         if(chasetail = true) {
             if ((mybody.some(Coord => Coord.x === (myHead.x - 1) && Coord.y === myHead.y)) && (mybody.some(Coord => Coord.x  === myHead.x && Coord.y === (myHead.y - 1))) && (mybody.some(Coord => Coord.x === myHead.x && Coord.y === (myHead.y + 1)))){
+                possibleMoves.up = false 
+                possibleMoves.down = false
+                possibleMoves.left = false 
+            } else if ((mybody.some(Coord => Coord.x === (myHead.x - 1) && Coord.y === myHead.y)) && (mybody.some(Coord => Coord.x === myHead.x && Coord.y === (myHead.y + 1)))){
                 possibleMoves.up = false 
                 possibleMoves.down = false
                 possibleMoves.left = false 
