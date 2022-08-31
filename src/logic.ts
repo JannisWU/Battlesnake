@@ -140,22 +140,27 @@ export function move(gameState: GameState): MoveResponse {
         const mybody = gameState.you.body
 
         if(chasetail = true) {
-            if (mybody.some(Coord => Coord.x === (myHead.x - 1) && Coord.y === myHead.y)){
+            if (hunger > 10){
+                possibleMoves = avoidWalls(myHead, boardWidth, possibleMoves, boardHeight, minWidth, minHeight)
+                possibleMoves = avoidMe(gameState, myHead, possibleMoves)
+                possibleMoves = avoidOtherSnakes(gameState, myHead, possibleMoves)
+            }
+            else if (mybody.some(Coord => Coord.x === (myHead.x - 1) && Coord.y === myHead.y)){
                 possibleMoves.right = false 
                 possibleMoves.left = false
                 possibleMoves.up = false 
             } 
-            if (mybody.some(Coord => Coord.x  === myHead.x && Coord.y === (myHead.y - 1))){
+            else if (mybody.some(Coord => Coord.x  === myHead.x && Coord.y === (myHead.y - 1))){
                 possibleMoves.up = false 
                 possibleMoves.down = false
                 possibleMoves.left = false 
             } 
-            if (mybody.some(Coord => Coord.x === myHead.x && Coord.y === (myHead.y + 1))){
+            else if (mybody.some(Coord => Coord.x === myHead.x && Coord.y === (myHead.y + 1))){
                 possibleMoves.up = false 
                 possibleMoves.down = false
                 possibleMoves.right = false 
             } 
-            if (mybody.some(Coord => Coord.x === (myHead.x + 1) && Coord.y === myHead.y)){
+            else if (mybody.some(Coord => Coord.x === (myHead.x + 1) && Coord.y === myHead.y)){
                 possibleMoves.left = false 
                 possibleMoves.right = false
                 possibleMoves.down = false
