@@ -55,34 +55,7 @@ export function move(gameState: GameState): MoveResponse {
     const minWidth = 0
     const minHeight = 0
 
-    if (myHead.x === (boardWidth - 1)){
-        possibleMoves.right = false
-    }
-    if (myHead.y === (boardHeight - 1)){
-        possibleMoves.up = false
-    }
-    if (myHead.x === minWidth){
-        possibleMoves.left = false
-    }
-    if (myHead.y === minHeight){
-        possibleMoves.down = false
-    }
-    if (myHead.y === 0 && myHead.x === 0){
-        possibleMoves.down = false
-       possibleMoves.left = false 
-    }
-    if (myHead.y === (boardHeight - 1) && myHead.x === 0){
-        possibleMoves.left = false
-        possibleMoves.up = false
-    }
-    if (myHead.y === (boardHeight - 1) && myHead.x === (boardWidth - 1)){
-        possibleMoves.right = false
-        possibleMoves.up = false
-    }
-    if (myHead.y === 0 && myHead.x === (boardWidth - 1)){
-        possibleMoves.down = false
-        possibleMoves.right = false
-    }
+    possibleMoves = avoidWalls(myHead, boardWidth, possibleMoves, boardHeight, minWidth, minHeight)
 
     // TODO: Step 2 - Don't hit yourself.
     // Use information in gameState to prevent your Battlesnake from colliding with itself.
@@ -168,40 +141,12 @@ export function move(gameState: GameState): MoveResponse {
         if (chasetail = true) {
             possibleMoves = avoidMe(gameState, myHead, possibleMoves)
 
-            if (myHead.x === (boardWidth - 1)){
-                possibleMoves.right = false
-            }
-            if (myHead.y === (boardHeight - 1)){
-                possibleMoves.up = false
-            }
-            if (myHead.x === minWidth){
-                possibleMoves.left = false
-            }
-            if (myHead.y === minHeight){
-                possibleMoves.down = false
-            }
-        
-            if (myHead.y === 0 && myHead.x === 0){
-                possibleMoves.down = false
-               possibleMoves.left = false 
-            }
-            if (myHead.y === (boardHeight - 1) && myHead.x === 0){
-                possibleMoves.left = false
-                possibleMoves.up = false
-            }
-            if (myHead.y === (boardHeight - 1) && myHead.x === (boardWidth - 1)){
-                possibleMoves.right = false
-                possibleMoves.up = false
-            }
-            if (myHead.y === 0 && myHead.x === (boardWidth - 1)){
-                possibleMoves.down = false
-                possibleMoves.right = false
-            }
-
-
             if (gameState.you.body.length < (boardWidth + boardHeight + (boardWidth - 2)+ (boardHeight - 2))){
             if (chasetail = true) {
              possibleMoves = avoidOtherSnakes(gameState, myHead, possibleMoves)
+             possibleMoves = avoidHazards(gameState, myHead, possibleMoves)
+             possibleMoves = avoidMe(gameState, myHead, possibleMoves)
+             
             } else if (myHead.x === (boardWidth - 1) && myHead.y === (boardHeight - 1)) {
                 possibleMoves.down = false
                 possibleMoves.up = false
@@ -289,6 +234,38 @@ export function move(gameState: GameState): MoveResponse {
     return response
  
     
+}
+
+function avoidWalls(myHead: Coord, boardWidth: number, possibleMoves: { [key: string]: boolean }, boardHeight: number, minWidth: number, minHeight: number): { [key: string]: boolean } {
+    if (myHead.x === (boardWidth - 1)) {
+        possibleMoves.right = false
+    }
+    if (myHead.y === (boardHeight - 1)) {
+        possibleMoves.up = false
+    }
+    if (myHead.x === minWidth) {
+        possibleMoves.left = false
+    }
+    if (myHead.y === minHeight) {
+        possibleMoves.down = false
+    }
+    if (myHead.y === 0 && myHead.x === 0) {
+        possibleMoves.down = false
+        possibleMoves.left = false
+    }
+    if (myHead.y === (boardHeight - 1) && myHead.x === 0) {
+        possibleMoves.left = false
+        possibleMoves.up = false
+    }
+    if (myHead.y === (boardHeight - 1) && myHead.x === (boardWidth - 1)) {
+        possibleMoves.right = false
+        possibleMoves.up = false
+    }
+    if (myHead.y === 0 && myHead.x === (boardWidth - 1)) {
+        possibleMoves.down = false
+        possibleMoves.right = false
+    }
+    return possibleMoves;
 }
 
 function avoidHazards(gameState: GameState, myHead: Coord, possibleMoves: { [key: string]: boolean }) {
