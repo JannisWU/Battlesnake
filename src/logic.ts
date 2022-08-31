@@ -138,58 +138,16 @@ export function move(gameState: GameState): MoveResponse {
     if (hunger > 30){
         chasetail = true
     
-        if(gameState.you.body.length < (boardWidth + boardHeight + (boardWidth - 2)+ (boardHeight - 2))) {
+        if(chasetail = true) {
             possibleMoves = avoidOtherSnakes(gameState, myHead, possibleMoves)
             possibleMoves = avoidHazards(gameState, myHead, possibleMoves)
             possibleMoves = avoidMe(gameState, myHead, possibleMoves)
-        } else if (gameState.you.body.length < (boardWidth + boardHeight + (boardWidth - 2)+ (boardHeight - 2))){
-            possibleMoves = movealongWalls(myHead, boardWidth, boardHeight, possibleMoves, minWidth, minHeight)
         }
-        
-        
-        if (gameState.you.body.length > (boardWidth + boardHeight + (boardWidth - 1)+ (boardHeight - 2))){
-        possibleMoves = avoidMe(gameState, myHead, possibleMoves)
-        possibleMoves = avoidOtherSnakes(gameState, myHead, possibleMoves)
-        possibleMoves = avoidHazards(gameState, myHead, possibleMoves)
-        if (myHead.x === (boardWidth - 2) && myHead.y === (boardHeight - 2)) {
-            possibleMoves.down = false
-            possibleMoves.up = false
-            possibleMoves.right = false
-        } else if (myHead.x === (boardWidth - 2)) {
-            possibleMoves.down = false
-            possibleMoves.left = false  
-            possibleMoves.right = false
-        } else if (myHead.x === (2) && myHead.y === (boardHeight - 2)) {
-            possibleMoves.right = false
-            possibleMoves.up = false 
-            possibleMoves.left = false
-        } else if (myHead.y === (boardHeight - 2)) {
-            possibleMoves.right = false
-            possibleMoves.up = false 
-            possibleMoves.down = false 
-        } else if (myHead.x === (1) && myHead.y === 1) {
-            possibleMoves.up = false
-            possibleMoves.down = false
-            possibleMoves.left = false
-        } else if(myHead.x === (1)){
-            possibleMoves.up = false
-            possibleMoves.right = false
-            possibleMoves.left = false
-        } else if (myHead.x === (boardWidth - 2) && myHead.y === 1) {
-            possibleMoves.left = false
-            possibleMoves.right = false
-            possibleMoves.down = false
-        } else if (myHead.y === (1)){
-            possibleMoves.left = false
-            possibleMoves.up = false
-            possibleMoves.down = false
-        }
-        
-
-        }
-        
-
+    
     }
+        
+
+    
 
 
     //angular tour of heroes 
