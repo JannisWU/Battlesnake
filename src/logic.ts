@@ -139,8 +139,15 @@ export function move(gameState: GameState): MoveResponse {
         chasetail = true
     
         if(chasetail = true) {
-            possibleMoves = avoidMe(gameState, myHead, possibleMoves)
-            if (myHead.y === minHeight && myHead.x === (boardWidth - 1)){
+            if (myHead.x = minWidth){
+                possibleMoves.up = false
+                possibleMoves.right = false
+                possibleMoves.left = false
+            } else if (myHead.y = minHeight){
+                possibleMoves.left = false
+                possibleMoves.up = false
+                possibleMoves.down = false
+            } else if (myHead.y === minHeight && myHead.x === (boardWidth - 1)){
                 possibleMoves.down = false
                 possibleMoves.right = false
                 possibleMoves.left = false
@@ -185,36 +192,7 @@ export function move(gameState: GameState): MoveResponse {
                 possibleMoves.up = false
                 possibleMoves.down = false
             }
-
-
-
-            if (myHead.x = 0){
-                possibleMoves.up = false
-                possibleMoves.right = false
-                possibleMoves.left = false
-            } else if (myHead.y = minHeight){
-                possibleMoves.left = false
-                possibleMoves.up = false
-                possibleMoves.down = false
-            }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+            
             
         }
 
