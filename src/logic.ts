@@ -138,56 +138,53 @@ export function move(gameState: GameState): MoveResponse {
     if (hunger > 30){
         chasetail = true
         
+
+        if (gameState.you.body.length < (boardWidth + boardHeight + (boardWidth - 2)+ (boardHeight - 2))){
         if (chasetail = true) {
-            possibleMoves = avoidMe(gameState, myHead, possibleMoves)
-
-            if (gameState.you.body.length < (boardWidth + boardHeight + (boardWidth - 2)+ (boardHeight - 2))){
-            if (chasetail = true) {
-             possibleMoves = avoidOtherSnakes(gameState, myHead, possibleMoves)
-             possibleMoves = avoidHazards(gameState, myHead, possibleMoves)
-             possibleMoves = avoidMe(gameState, myHead, possibleMoves)
-             
-            } else if (myHead.x === (boardWidth - 1) && myHead.y === (boardHeight - 1)) {
-                possibleMoves.down = false
-                possibleMoves.up = false
-                possibleMoves.right = false
-            } else if (myHead.x === (boardWidth - 1)) {
-                possibleMoves.down = false
-                possibleMoves.left = false  
-                possibleMoves.right = false
-            } else if (myHead.x === (minWidth) && myHead.y === (boardHeight - 1)) {
-                possibleMoves.right = false
-                possibleMoves.up = false 
-                possibleMoves.left = false
-            } else if (myHead.y === (boardHeight - 1)) {
-                possibleMoves.right = false
-                possibleMoves.up = false 
-                possibleMoves.down = false 
-            } else if (myHead.x === (minWidth) && myHead.y === minHeight) {
-                possibleMoves.up = false
-                possibleMoves.down = false
-                possibleMoves.left = false
-            } else if(myHead.x === (minWidth)){
-                possibleMoves.up = false
-                possibleMoves.right = false
-                possibleMoves.left = false
-            } else if (myHead.x === (boardWidth - 1) && myHead.y === minHeight) {
-                possibleMoves.left = false
-                possibleMoves.right = false
-                possibleMoves.down = false
-            } else if (myHead.y === (minHeight)){
-                possibleMoves.left = false
-                possibleMoves.up = false
-                possibleMoves.down = false
-            }
-            }
-
-            if (gameState.you.body.length > (boardWidth + boardHeight + (boardWidth - 1)+ (boardHeight - 2)) ){
-            if (chasetail === true){
-            possibleMoves = avoidMe(gameState, myHead, possibleMoves)
-            }
-            }
+         possibleMoves = avoidOtherSnakes(gameState, myHead, possibleMoves)
+         possibleMoves = avoidHazards(gameState, myHead, possibleMoves)
+         possibleMoves = avoidMe(gameState, myHead, possibleMoves)
+        } else if (myHead.x === (boardWidth - 1) && myHead.y === (boardHeight - 1)) {
+            possibleMoves.down = false
+            possibleMoves.up = false
+            possibleMoves.right = false
+        } else if (myHead.x === (boardWidth - 1)) {
+            possibleMoves.down = false
+            possibleMoves.left = false  
+            possibleMoves.right = false
+        } else if (myHead.x === (minWidth) && myHead.y === (boardHeight - 1)) {
+            possibleMoves.right = false
+            possibleMoves.up = false 
+            possibleMoves.left = false
+        } else if (myHead.y === (boardHeight - 1)) {
+            possibleMoves.right = false
+            possibleMoves.up = false 
+            possibleMoves.down = false 
+        } else if (myHead.x === (minWidth) && myHead.y === minHeight) {
+            possibleMoves.up = false
+            possibleMoves.down = false
+            possibleMoves.left = false
+        } else if(myHead.x === (minWidth)){
+            possibleMoves.up = false
+            possibleMoves.right = false
+            possibleMoves.left = false
+        } else if (myHead.x === (boardWidth - 1) && myHead.y === minHeight) {
+            possibleMoves.left = false
+            possibleMoves.right = false
+            possibleMoves.down = false
+        } else if (myHead.y === (minHeight)){
+            possibleMoves.left = false
+            possibleMoves.up = false
+            possibleMoves.down = false
         }
+        }
+
+        if (gameState.you.body.length > (boardWidth + boardHeight + (boardWidth - 1)+ (boardHeight - 2)) ){
+        if (chasetail === true){
+        possibleMoves = avoidMe(gameState, myHead, possibleMoves)
+        }
+        }
+        
 
     }
 
