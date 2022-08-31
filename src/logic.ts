@@ -143,22 +143,22 @@ export function move(gameState: GameState): MoveResponse {
             if (myHead.x === (boardWidth - 1) || myHead.x === minWidth || myHead.y === (boardHeight - 1) || myHead.y === minHeight) {
                 possibleMoves = avoidWalls(myHead, boardWidth, possibleMoves, boardHeight, minWidth, minHeight)
             }
-            else if (mybody.some(Coord => Coord.x === (myHead.x - 1) && Coord.y === myHead.y)){
+            if (mybody.some(Coord => Coord.x === (myHead.x - 1) && Coord.y === myHead.y)){
                 possibleMoves.right = false 
                 possibleMoves.left = false
                 possibleMoves.up = false 
             } 
-            else if (mybody.some(Coord => Coord.x  === myHead.x && Coord.y === (myHead.y - 1))){
+            if (mybody.some(Coord => Coord.x  === myHead.x && Coord.y === (myHead.y - 1))){
                 possibleMoves.up = false 
                 possibleMoves.down = false
                 possibleMoves.left = false 
             } 
-            else if (mybody.some(Coord => Coord.x === myHead.x && Coord.y === (myHead.y + 1))){
+            if (mybody.some(Coord => Coord.x === myHead.x && Coord.y === (myHead.y + 1))){
                 possibleMoves.up = false 
                 possibleMoves.down = false
                 possibleMoves.right = false 
             } 
-            else if (mybody.some(Coord => Coord.x === (myHead.x + 1) && Coord.y === myHead.y)){
+            if (mybody.some(Coord => Coord.x === (myHead.x + 1) && Coord.y === myHead.y)){
                 possibleMoves.left = false 
                 possibleMoves.right = false
                 possibleMoves.down = false
