@@ -158,6 +158,7 @@ export function move(gameState: GameState): MoveResponse {
                 possibleMoves.left = false
                 possibleMoves.up = false 
             } 
+
             if ((mybody.some(Coord => Coord.x === (myHead.x + 1) && Coord.y === myHead.y)) && (mybody.some(Coord => Coord.x === (myHead.x - 1) && Coord.y === myHead.y)) && (mybody.some(Coord => Coord.x  === myHead.x && Coord.y === (myHead.y - 1)))){
                 possibleMoves.down = false 
                 possibleMoves.left = false
@@ -175,6 +176,7 @@ export function move(gameState: GameState): MoveResponse {
                 possibleMoves.down = false
                 possibleMoves.left = false 
             } 
+
             if ((mybody.some(Coord => Coord.x === (myHead.x + 1) && Coord.y === myHead.y)) && (mybody.some(Coord => Coord.x === (myHead.x - 1) && Coord.y === myHead.y)) && (mybody.some(Coord => Coord.x === myHead.x && Coord.y === (myHead.y + 1)))){
                 possibleMoves.up = false 
                 possibleMoves.left = false
@@ -192,6 +194,7 @@ export function move(gameState: GameState): MoveResponse {
                 possibleMoves.down = false
                 possibleMoves.right = false 
             } 
+
             if ((mybody.some(Coord => Coord.x === (myHead.x + 1) && Coord.y === myHead.y)) && (mybody.some(Coord => Coord.x  === myHead.x && Coord.y === (myHead.y - 1))) && (mybody.some(Coord => Coord.x === myHead.x && Coord.y === (myHead.y + 1)))){
                 possibleMoves.up = false 
                 possibleMoves.down = false
@@ -210,6 +213,41 @@ export function move(gameState: GameState): MoveResponse {
                 possibleMoves.down = false
             }
             
+            if ((mybody.some(Coord => Coord.x != (myHead.x + 1) && Coord.y != myHead.y)) || (mybody.some(Coord => Coord.x != (myHead.x - 1) && Coord.y != myHead.y)) || (mybody.some(Coord => Coord.x  != myHead.x && Coord.y != (myHead.y - 1))) || (mybody.some(Coord => Coord.x != myHead.x && Coord.y != (myHead.y + 1)))){
+                if (myHead.x === (boardWidth - 2) && myHead.y === (boardHeight - 2)) {
+                    possibleMoves.down = false
+                    possibleMoves.up = false
+                    possibleMoves.right = false
+                } else if (myHead.x === (boardWidth - 2)) {
+                    possibleMoves.down = false
+                    possibleMoves.left = false  
+                    possibleMoves.right = false
+                } else if (myHead.x === (2) && myHead.y === (boardHeight - 2)) {
+                    possibleMoves.right = false
+                    possibleMoves.up = false 
+                    possibleMoves.left = false
+                } else if (myHead.y === (boardHeight - 2)) {
+                    possibleMoves.right = false
+                    possibleMoves.up = false 
+                    possibleMoves.down = false 
+                } else if (myHead.x === (1) && myHead.y === 1) {
+                    possibleMoves.up = false
+                    possibleMoves.down = false
+                    possibleMoves.left = false
+                } else if(myHead.x === (1)){
+                    possibleMoves.up = false
+                    possibleMoves.right = false
+                    possibleMoves.left = false
+                } else if (myHead.x === (boardWidth - 2) && myHead.y === 1) {
+                    possibleMoves.left = false
+                    possibleMoves.right = false
+                    possibleMoves.down = false
+                } else if (myHead.y === (1)){
+                    possibleMoves.left = false
+                    possibleMoves.up = false
+                    possibleMoves.down = false
+                }
+            }
             
         }
         
