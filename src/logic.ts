@@ -137,15 +137,16 @@ export function move(gameState: GameState): MoveResponse {
     // implementing a smarter Movement
     if (hunger > 30){
         chasetail = true
-        
-
-        if (gameState.you.body.length < (boardWidth + boardHeight + (boardWidth - 2)+ (boardHeight - 2))){
-         possibleMoves = avoidOtherSnakes(gameState, myHead, possibleMoves)
-         possibleMoves = avoidHazards(gameState, myHead, possibleMoves)
-         possibleMoves = avoidMe(gameState, myHead, possibleMoves)
-         possibleMoves = movealongWalls(myHead, boardWidth, boardHeight, possibleMoves, minWidth, minHeight)
+    
+        if(gameState.you.body.length < (boardWidth + boardHeight + (boardWidth - 2)+ (boardHeight - 2))) {
+            possibleMoves = avoidOtherSnakes(gameState, myHead, possibleMoves)
+            possibleMoves = avoidHazards(gameState, myHead, possibleMoves)
+            possibleMoves = avoidMe(gameState, myHead, possibleMoves)
+        } else if (gameState.you.body.length < (boardWidth + boardHeight + (boardWidth - 2)+ (boardHeight - 2))){
+            possibleMoves = movealongWalls(myHead, boardWidth, boardHeight, possibleMoves, minWidth, minHeight)
         }
-
+        
+        
         if (gameState.you.body.length > (boardWidth + boardHeight + (boardWidth - 1)+ (boardHeight - 2))){
         possibleMoves = avoidMe(gameState, myHead, possibleMoves)
         possibleMoves = avoidOtherSnakes(gameState, myHead, possibleMoves)
