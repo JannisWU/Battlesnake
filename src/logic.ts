@@ -140,7 +140,6 @@ export function move(gameState: GameState): MoveResponse {
         
 
         if (gameState.you.body.length < (boardWidth + boardHeight + (boardWidth - 2)+ (boardHeight - 2))){
-        
          possibleMoves = avoidOtherSnakes(gameState, myHead, possibleMoves)
          possibleMoves = avoidHazards(gameState, myHead, possibleMoves)
          possibleMoves = avoidMe(gameState, myHead, possibleMoves)
@@ -179,8 +178,7 @@ export function move(gameState: GameState): MoveResponse {
         }
         }
 
-        if (gameState.you.body.length > (boardWidth + boardHeight + (boardWidth - 1)+ (boardHeight - 2)) && gameState.you.body.length < 38 ){
-        
+        if (gameState.you.body.length > (boardWidth + boardHeight + (boardWidth - 1)+ (boardHeight - 2))){
         possibleMoves = avoidMe(gameState, myHead, possibleMoves)
         possibleMoves = avoidOtherSnakes(gameState, myHead, possibleMoves)
         possibleMoves = avoidHazards(gameState, myHead, possibleMoves)
