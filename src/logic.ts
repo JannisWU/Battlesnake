@@ -213,41 +213,6 @@ export function move(gameState: GameState): MoveResponse {
                 possibleMoves.down = false
             }
             
-            if ((mybody.some(Coord => Coord.x != (myHead.x + 1) && Coord.y != myHead.y)) && (mybody.some(Coord => Coord.x != (myHead.x - 1) && Coord.y != myHead.y)) && (mybody.some(Coord => Coord.x  != myHead.x && Coord.y != (myHead.y - 1))) && (mybody.some(Coord => Coord.x != myHead.x && Coord.y != (myHead.y + 1)))){
-                if (myHead.x === (boardWidth - 1) && myHead.y === (boardHeight - 1)) {
-                    possibleMoves.down = false
-                    possibleMoves.up = false
-                    possibleMoves.right = false
-                } else if (myHead.x === (boardWidth - 1)) {
-                    possibleMoves.down = false
-                    possibleMoves.left = false  
-                    possibleMoves.right = false
-                } else if (myHead.x === (minWidth) && myHead.y === (boardHeight - 1)) {
-                    possibleMoves.right = false
-                    possibleMoves.up = false 
-                    possibleMoves.left = false
-                } else if (myHead.y === (boardHeight - 1)) {
-                    possibleMoves.right = false
-                    possibleMoves.up = false 
-                    possibleMoves.down = false 
-                } else if (myHead.x === minWidth && myHead.y === minHeight) {
-                    possibleMoves.up = false
-                    possibleMoves.down = false
-                    possibleMoves.left = false
-                } else if(myHead.x === (0)){
-                    possibleMoves.up = false
-                    possibleMoves.right = false
-                    possibleMoves.left = false
-                } else if (myHead.x === (boardWidth - 1) && myHead.y === minHeight) {
-                    possibleMoves.left = false
-                    possibleMoves.right = false
-                    possibleMoves.down = false
-                } else if (myHead.y === (minHeight)){
-                    possibleMoves.left = false
-                    possibleMoves.up = false
-                    possibleMoves.down = false
-                }
-            }
             
         }
         
