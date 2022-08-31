@@ -142,7 +142,64 @@ export function move(gameState: GameState): MoveResponse {
             possibleMoves = avoidOtherSnakes(gameState, myHead, possibleMoves)
             possibleMoves = avoidHazards(gameState, myHead, possibleMoves)
             possibleMoves = avoidMe(gameState, myHead, possibleMoves)
+            if (myHead.y === minHeight && myHead.x === boardWidth - 1){
+                possibleMoves.down = false
+                possibleMoves.right = false
+                possibleMoves.left = false
+            } else if (myHead.y = minHeight){
+                possibleMoves.left = false
+                possibleMoves.up = false
+                possibleMoves.down = false
+            } else if (myHead.y === 1 && myHead.x === boardWidth -1 ){
+                possibleMoves.right = false
+                possibleMoves.up = false
+                possibleMoves.down = false
+            } else if (myHead.y = 1){
+                possibleMoves.right = false
+                possibleMoves.up = false
+                possibleMoves.down = false
+            } else if (myHead.y === 1 && myHead.x === 1){
+                possibleMoves.down = false
+                possibleMoves.right = false
+                possibleMoves.left = false
+            } else if (myHead.y = 2){
+                possibleMoves.left = false
+                possibleMoves.up = false
+                possibleMoves.down = false
+            } else if (myHead.y === 2 && myHead.x === boardWidth - 1){
+                possibleMoves.down = false
+                possibleMoves.right = false
+                possibleMoves.left = false
+            } else if (myHead.y = 3){
+                possibleMoves.right = false
+                possibleMoves.up = false
+                possibleMoves.down = false
+            } else if (myHead.y === 3 && myHead.x === 1){
+                possibleMoves.down = false
+                possibleMoves.right = false
+                possibleMoves.left = false
+            }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            
         }
+
     
     }
         
