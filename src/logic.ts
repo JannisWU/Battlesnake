@@ -139,18 +139,12 @@ export function move(gameState: GameState): MoveResponse {
         chasetail = true
     
         if(chasetail = true) {
-            possibleMoves = avoidOtherSnakes(gameState, myHead, possibleMoves)
-            possibleMoves = avoidHazards(gameState, myHead, possibleMoves)
             possibleMoves = avoidMe(gameState, myHead, possibleMoves)
-            if (myHead.y === minHeight && myHead.x === boardWidth - 1){
+            if (myHead.y === minHeight && myHead.x === (boardWidth - 1)){
                 possibleMoves.down = false
                 possibleMoves.right = false
                 possibleMoves.left = false
-            } else if (myHead.y = minHeight){
-                possibleMoves.left = false
-                possibleMoves.up = false
-                possibleMoves.down = false
-            } else if (myHead.y === 1 && myHead.x === boardWidth -1 ){
+            }  else if (myHead.y === 1 && myHead.x === (boardWidth - 1)){
                 possibleMoves.right = false
                 possibleMoves.up = false
                 possibleMoves.down = false
@@ -166,7 +160,7 @@ export function move(gameState: GameState): MoveResponse {
                 possibleMoves.left = false
                 possibleMoves.up = false
                 possibleMoves.down = false
-            } else if (myHead.y === 2 && myHead.x === boardWidth - 1){
+            } else if (myHead.y === 2 && myHead.x === (boardWidth - 1)){
                 possibleMoves.down = false
                 possibleMoves.right = false
                 possibleMoves.left = false
@@ -178,11 +172,30 @@ export function move(gameState: GameState): MoveResponse {
                 possibleMoves.down = false
                 possibleMoves.right = false
                 possibleMoves.left = false
-            } 
+            } else if (myHead.y = 4){
+                possibleMoves.left = false
+                possibleMoves.up = false
+                possibleMoves.down = false
+            } else if (myHead.y === 4 && myHead.x === (boardWidth - 1)){
+                possibleMoves.down = false
+                possibleMoves.right = false
+                possibleMoves.left = false
+            } else if (myHead.y = 5){
+                possibleMoves.right = false
+                possibleMoves.up = false
+                possibleMoves.down = false
+            }
+
+
+
             if (myHead.x = 0){
                 possibleMoves.up = false
                 possibleMoves.right = false
                 possibleMoves.left = false
+            } else if (myHead.y = minHeight){
+                possibleMoves.left = false
+                possibleMoves.up = false
+                possibleMoves.down = false
             }
 
 
