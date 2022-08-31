@@ -145,15 +145,7 @@ export function move(gameState: GameState): MoveResponse {
                 possibleMoves.up = false 
                 possibleMoves.down = false
                 possibleMoves.left = false 
-            } else if ((mybody.some(Coord => Coord.x === (myHead.x - 1) && Coord.y === myHead.y)) && (myNeck.x === myHead.x && myNeck.y === (myHead.y + 1))){ 
-                possibleMoves.up = false 
-                possibleMoves.down = false
-                possibleMoves.left = false 
-            } else if ((mybody.some(Coord => Coord.x === (myHead.x - 1) && Coord.y === myHead.y)) && myHead.y === minHeight){
-                possibleMoves.up = false 
-                possibleMoves.down = false
-                possibleMoves.left = false 
-            } else if (mybody.some(Coord => Coord.x === (myHead.x - 1) && Coord.y === myHead.y)){
+            }  else if (mybody.some(Coord => Coord.x === (myHead.x - 1) && Coord.y === myHead.y)){
                 possibleMoves.right = false 
                 possibleMoves.left = false
                 possibleMoves.up = false 
@@ -163,14 +155,6 @@ export function move(gameState: GameState): MoveResponse {
                 possibleMoves.down = false 
                 possibleMoves.left = false
                 possibleMoves.right = false 
-            } else if ((mybody.some(Coord => Coord.x === (myHead.x - 1) && Coord.y === myHead.y)) && (myNeck.x < myHead.x)){
-                possibleMoves.down = false 
-                possibleMoves.left = false
-                possibleMoves.right = false
-            } else if (myHead.x === boardWidth && (mybody.some(Coord => Coord.x  === myHead.x && Coord.y === (myHead.y - 1)))){
-                possibleMoves.down = false 
-                possibleMoves.left = false
-                possibleMoves.right = false
             } else if (mybody.some(Coord => Coord.x  === myHead.x && Coord.y === (myHead.y - 1))){
                 possibleMoves.up = false 
                 possibleMoves.down = false
@@ -181,14 +165,6 @@ export function move(gameState: GameState): MoveResponse {
                 possibleMoves.up = false 
                 possibleMoves.left = false
                 possibleMoves.right = false 
-            } else if ((myNeck.x > myHead.x) && (mybody.some(Coord => Coord.x === myHead.x && Coord.y === (myHead.y + 1)))) {
-                possibleMoves.up = false 
-                possibleMoves.left = false
-                possibleMoves.right = false 
-            } else if ((mybody.some(Coord => Coord.x === myHead.x && Coord.y === (myHead.y + 1))) && myHead.x === minWidth){
-                possibleMoves.up = false 
-                possibleMoves.left = false
-                possibleMoves.right = false 
             } else if (mybody.some(Coord => Coord.x === myHead.x && Coord.y === (myHead.y + 1))){
                 possibleMoves.up = false 
                 possibleMoves.down = false
@@ -196,14 +172,6 @@ export function move(gameState: GameState): MoveResponse {
             } 
 
             if ((mybody.some(Coord => Coord.x === (myHead.x + 1) && Coord.y === myHead.y)) && (myNeck.y < myHead.y) && (mybody.some(Coord => Coord.x === myHead.x && Coord.y === (myHead.y + 1)))){
-                possibleMoves.up = false 
-                possibleMoves.down = false
-                possibleMoves.right = false 
-            } else if ((mybody.some(Coord => Coord.x === (myHead.x + 1) && Coord.y === myHead.y)) && (myNeck.y < myHead.y)){
-                possibleMoves.up = false 
-                possibleMoves.down = false
-                possibleMoves.right = false 
-            } else if ((mybody.some(Coord => Coord.x === (myHead.x + 1) && Coord.y === myHead.y)) && myHead.y === boardHeight){
                 possibleMoves.up = false 
                 possibleMoves.down = false
                 possibleMoves.right = false 
