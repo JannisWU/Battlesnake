@@ -141,7 +141,7 @@ export function move(gameState: GameState): MoveResponse {
         possibleMoves = avoidWalls(myHead, boardWidth, possibleMoves, boardHeight, minWidth, minHeight)
 
         if(chasetail = true) {
-            if ((mybody.some(Coord => Coord.x === (myHead.x - 1) && Coord.y === myHead.y)) && (mybody.some(Coord => Coord.x  === myHead.x && Coord.y === (myHead.y - 1))) && (myNeck.x === (myHead.x) && myNeck.y === (myHead.y +1))){
+            if ((mybody.some(Coord => Coord.x === (myHead.x - 1) && Coord.y === myHead.y)) && (mybody.some(Coord => Coord.x  === myHead.x && Coord.y === (myHead.y - 1))) && myNeck.x === myHead.x && myNeck.y > myHead.y){
                 possibleMoves.up = false 
                 possibleMoves.down = false
                 possibleMoves.left = false 
@@ -159,7 +159,7 @@ export function move(gameState: GameState): MoveResponse {
                 possibleMoves.up = false 
             } 
 
-            if ((mybody.some(Coord => Coord.x === (myHead.x + 1) && Coord.y === myHead.y)) && myNeck.x === (myHead.x -1) && (mybody.some(Coord => Coord.x  === myHead.x && Coord.y === (myHead.y - 1)))){
+            if ((mybody.some(Coord => Coord.x === (myHead.x + 1) && Coord.y === myHead.y)) && myNeck.x < myHead.x && (mybody.some(Coord => Coord.x  === myHead.x && Coord.y === (myHead.y - 1)))){
                 possibleMoves.down = false 
                 possibleMoves.left = false
                 possibleMoves.right = false 
