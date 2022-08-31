@@ -140,9 +140,6 @@ export function move(gameState: GameState): MoveResponse {
         const mybody = gameState.you.body
 
         if(chasetail = true) {
-            possibleMoves = avoidMe(gameState, myHead, possibleMoves) 
-            possibleMoves = avoidWalls(myHead, boardWidth, possibleMoves, boardHeight, minWidth, minHeight)
-            possibleMoves = avoidOtherSnakes(gameState, myHead, possibleMoves)
             if (mybody.some(Coord => Coord.x === (myHead.x - 1) && Coord.y === myHead.y)){
                 possibleMoves.right = false 
                 possibleMoves.left = false
