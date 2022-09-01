@@ -135,7 +135,7 @@ export function move(gameState: GameState): MoveResponse {
     }
     
     // implementing a smarter Movement
-    if (gameState.you.body.length > gameState.board.snakes.length ){
+    if (gameState.you.body.length > 15){
         chasetail = true
         const mybody = gameState.you.body
         possibleMoves = avoidWalls(myHead, boardWidth, possibleMoves, boardHeight, minWidth, minHeight)
