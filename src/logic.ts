@@ -142,9 +142,7 @@ export function move(gameState: GameState): MoveResponse {
 
         if(chasetail = true) {
             if ((mybody.some(Coord => Coord.x === (myHead.x - 1) && Coord.y === myHead.y)) && (mybody.some(Coord => Coord.x  === myHead.x && Coord.y === (myHead.y - 1)))){
-                possibleMoves.up = false 
-                possibleMoves.down = false
-                possibleMoves.left = false 
+                possibleMoves = avoidMe(gameState, myHead, possibleMoves)
             }  else if (mybody.some(Coord => Coord.x === (myHead.x - 1) && Coord.y === myHead.y)){
                 possibleMoves.right = false 
                 possibleMoves.left = false
@@ -152,9 +150,7 @@ export function move(gameState: GameState): MoveResponse {
             } 
 
             if ((mybody.some(Coord => Coord.x === (myHead.x + 1) && Coord.y === myHead.y)) && (mybody.some(Coord => Coord.x  === myHead.x && Coord.y === (myHead.y - 1)))){
-                possibleMoves.down = false 
-                possibleMoves.left = false
-                possibleMoves.right = false 
+                possibleMoves = avoidMe(gameState, myHead, possibleMoves)
             } else if (mybody.some(Coord => Coord.x  === myHead.x && Coord.y === (myHead.y - 1))){
                 possibleMoves.up = false 
                 possibleMoves.down = false
@@ -162,9 +158,7 @@ export function move(gameState: GameState): MoveResponse {
             } 
 
             if ((mybody.some(Coord => Coord.x === (myHead.x - 1) && Coord.y === myHead.y)) && (mybody.some(Coord => Coord.x === myHead.x && Coord.y === (myHead.y + 1)))){
-                possibleMoves.up = false 
-                possibleMoves.left = false
-                possibleMoves.right = false 
+                possibleMoves = avoidMe(gameState, myHead, possibleMoves) 
             } else if (mybody.some(Coord => Coord.x === myHead.x && Coord.y === (myHead.y + 1))){
                 possibleMoves.up = false 
                 possibleMoves.down = false
@@ -172,9 +166,7 @@ export function move(gameState: GameState): MoveResponse {
             } 
 
             if ((mybody.some(Coord => Coord.x === (myHead.x + 1) && Coord.y === myHead.y)) &&  (mybody.some(Coord => Coord.x === myHead.x && Coord.y === (myHead.y + 1)))){
-                possibleMoves.up = false 
-                possibleMoves.down = false
-                possibleMoves.right = false 
+                possibleMoves = avoidMe(gameState, myHead, possibleMoves) 
             } else if (mybody.some(Coord => Coord.x === (myHead.x + 1) && Coord.y === myHead.y)){
                 possibleMoves.left = false 
                 possibleMoves.right = false
