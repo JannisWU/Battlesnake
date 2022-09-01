@@ -77,7 +77,7 @@ export function move(gameState: GameState): MoveResponse {
     
     let chasetail: boolean = false
     let hungermode: boolean = false
-        if (gameState.you.body.length < 16) {
+        if (hunger < 80) {
             hungermode = true
         }
 
@@ -135,7 +135,7 @@ export function move(gameState: GameState): MoveResponse {
     }
     
     // implementing a smarter Movement
-    if (gameState.you.body.length > 15){
+    if (hunger > 80){
         chasetail = true
         const mybody = gameState.you.body
         possibleMoves = avoidWalls(myHead, boardWidth, possibleMoves, boardHeight, minWidth, minHeight)
