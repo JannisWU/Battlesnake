@@ -138,7 +138,11 @@ function chaseTail(hunger: number, chasetail: boolean, gameState: GameState, pos
                 possibleMoves.down = false
             }
 
+            if (myHead.x === boardWidth || myHead.x === minWidth || myHead.y === boardHeight || myHead.y === minHeight){
+                possibleMoves = avoidWalls(myHead, boardWidth, possibleMoves, boardHeight, minWidth, minHeight)
+            }
 
+            
         }
 
 
