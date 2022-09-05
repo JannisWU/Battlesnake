@@ -80,17 +80,9 @@ export function move(gameState: GameState): MoveResponse {
         if (hunger < 5) {
             hungermode = true
         }
+    
+    possibleMoves = findFood(gameState, hungermode, foods, myHead, possibleMoves)
 
-        
-    if (gameState.board.food.length != 0 && hungermode === true) {
-        let isRight: boolean = false
-        let isLeft: boolean = false
-        let isUp: boolean = false
-        let isDown: boolean = false 
-    
-    possibleMoves = findFood(foods, myHead, isRight, isLeft, isUp, isDown, possibleMoves)
-    
-    }
     
     // implementing a smarter Movement
     if (hunger > 5){
@@ -156,47 +148,56 @@ export function move(gameState: GameState): MoveResponse {
     
 }
 
-function findFood(foods: Coord[], myHead: Coord, isRight: boolean, isLeft: boolean, isUp: boolean, isDown: boolean, possibleMoves: { [key: string]: boolean }):{ [key: string]: boolean } {
-    if (foods[0].x > myHead.x) {
-        isRight = true
-    } else if (foods[0].x < myHead.x) {
-        isLeft = true
-    }
+function findFood(gameState: GameState, hungermode: boolean, foods: Coord[], myHead: Coord, possibleMoves: { [key: string]: boolean }): { [key: string]: boolean } {
+    if (gameState.board.food.length != 0 && hungermode === true) {
+        let isRight: boolean = false
+        let isLeft: boolean = false
+        let isUp: boolean = false
+        let isDown: boolean = false
 
-    if (foods[0].y > myHead.y) {
-        isUp = true
-    } else if (foods[0].y < myHead.y) {
-        isDown = true
-    }
 
-    if (isRight === true && isUp === true) {
-        possibleMoves.left = false
-        possibleMoves.down = false
-    } else if (isLeft === true && isUp === true) {
-        possibleMoves.right = false
-        possibleMoves.down = false
-    } else if (isRight === true && isDown === true) {
-        possibleMoves.left = false
-        possibleMoves.up = false
-    } else if (isLeft === true && isDown === true) {
-        possibleMoves.right = false
-        possibleMoves.up = false
-    } else if (isRight === true) {
-        possibleMoves.left = false
-        possibleMoves.down = false
-        possibleMoves.up = false
-    } else if (isLeft === true) {
-        possibleMoves.right = false
-        possibleMoves.down = false
-        possibleMoves.up = false
-    } else if (isUp === true) {
-        possibleMoves.left = false
-        possibleMoves.down = false
-        possibleMoves.right = false
-    } else if (isDown === true) {
-        possibleMoves.left = false
-        possibleMoves.right = false
-        possibleMoves.up = false
+
+        if (foods[0].x > myHead.x) {
+            isRight = true
+        } else if (foods[0].x < myHead.x) {
+            isLeft = true
+        }
+
+        if (foods[0].y > myHead.y) {
+            isUp = true
+        } else if (foods[0].y < myHead.y) {
+            isDown = true
+        }
+
+        if (isRight === true && isUp === true) {
+            possibleMoves.left = false
+            possibleMoves.down = false
+        } else if (isLeft === true && isUp === true) {
+            possibleMoves.right = false
+            possibleMoves.down = false
+        } else if (isRight === true && isDown === true) {
+            possibleMoves.left = false
+            possibleMoves.up = false
+        } else if (isLeft === true && isDown === true) {
+            possibleMoves.right = false
+            possibleMoves.up = false
+        } else if (isRight === true) {
+            possibleMoves.left = false
+            possibleMoves.down = false
+            possibleMoves.up = false
+        } else if (isLeft === true) {
+            possibleMoves.right = false
+            possibleMoves.down = false
+            possibleMoves.up = false
+        } else if (isUp === true) {
+            possibleMoves.left = false
+            possibleMoves.down = false
+            possibleMoves.right = false
+        } else if (isDown === true) {
+            possibleMoves.left = false
+            possibleMoves.right = false
+            possibleMoves.up = false
+        }
     }
     return possibleMoves;
 }
