@@ -32,6 +32,11 @@ export function move(gameState: GameState): MoveResponse {
     // Step 0: Don't let your Battlesnake move back on it's own neck
     const myHead = gameState.you.head
     const myNeck = gameState.you.body[1]
+    const boardWidth = gameState.board.width
+    const boardHeight = gameState.board.height
+    const minWidth = 0
+    const minHeight = 0
+
 
     if (myNeck.x < myHead.x) {
         possibleMoves.left = false
@@ -50,11 +55,6 @@ export function move(gameState: GameState): MoveResponse {
     // Use information in gameState to prevent your Battlesnake from moving beyond the boundaries of the board.
     // const boardWidth = gameState.board.width
     // const boardHeight = gameState.board.height
-    const boardWidth = gameState.board.width
-    const boardHeight = gameState.board.height
-    const minWidth = 0
-    const minHeight = 0
-
     possibleMoves = avoidWalls(myHead, boardWidth, possibleMoves, boardHeight, minWidth, minHeight)
 
     // TODO: Step 2 - Don't hit yourself.
@@ -88,49 +88,8 @@ export function move(gameState: GameState): MoveResponse {
         let isUp: boolean = false
         let isDown: boolean = false 
     
+    possibleMoves = findFood(foods, myHead, isRight, isLeft, isUp, isDown, possibleMoves)
     
-
-    if (foods[0].x > myHead.x){
-        isRight = true
-    } else if (foods[0].x < myHead.x){
-     isLeft = true
-    } 
-
-        if (foods[0].y > myHead.y){
-        isUp = true
-    } else if (foods[0].y < myHead.y){
-        isDown = true
-    }
-
-    if (isRight === true && isUp === true){
-        possibleMoves.left = false 
-        possibleMoves.down = false
-    } else if (isLeft === true && isUp === true){
-        possibleMoves.right = false 
-        possibleMoves.down = false
-    } else if (isRight === true && isDown === true){
-        possibleMoves.left = false 
-        possibleMoves.up = false
-    } else if (isLeft === true && isDown === true){
-        possibleMoves.right = false 
-        possibleMoves.up = false
-    } else if (isRight === true){
-        possibleMoves.left = false 
-        possibleMoves.down = false 
-        possibleMoves.up = false
-    } else if (isLeft === true){
-        possibleMoves.right = false 
-        possibleMoves.down = false 
-        possibleMoves.up = false
-    } else if (isUp === true){
-        possibleMoves.left = false 
-        possibleMoves.down = false 
-        possibleMoves.right = false
-    } else if (isDown === true){
-        possibleMoves.left = false 
-        possibleMoves.right = false 
-        possibleMoves.up = false
-    }
     }
     
     // implementing a smarter Movement
@@ -195,6 +154,51 @@ export function move(gameState: GameState): MoveResponse {
     return response
  
     
+}
+
+function findFood(foods: Coord[], myHead: Coord, isRight: boolean, isLeft: boolean, isUp: boolean, isDown: boolean, possibleMoves: { [key: string]: boolean }):{ [key: string]: boolean } {
+    if (foods[0].x > myHead.x) {
+        isRight = true
+    } else if (foods[0].x < myHead.x) {
+        isLeft = true
+    }
+
+    if (foods[0].y > myHead.y) {
+        isUp = true
+    } else if (foods[0].y < myHead.y) {
+        isDown = true
+    }
+
+    if (isRight === true && isUp === true) {
+        possibleMoves.left = false
+        possibleMoves.down = false
+    } else if (isLeft === true && isUp === true) {
+        possibleMoves.right = false
+        possibleMoves.down = false
+    } else if (isRight === true && isDown === true) {
+        possibleMoves.left = false
+        possibleMoves.up = false
+    } else if (isLeft === true && isDown === true) {
+        possibleMoves.right = false
+        possibleMoves.up = false
+    } else if (isRight === true) {
+        possibleMoves.left = false
+        possibleMoves.down = false
+        possibleMoves.up = false
+    } else if (isLeft === true) {
+        possibleMoves.right = false
+        possibleMoves.down = false
+        possibleMoves.up = false
+    } else if (isUp === true) {
+        possibleMoves.left = false
+        possibleMoves.down = false
+        possibleMoves.right = false
+    } else if (isDown === true) {
+        possibleMoves.left = false
+        possibleMoves.right = false
+        possibleMoves.up = false
+    }
+    return possibleMoves;
 }
 
 function movealongWalls(myHead: Coord, boardWidth: number, boardHeight: number, possibleMoves: { [key: string]: boolean }, minWidth: number, minHeight: number):{ [key: string]: boolean } {
