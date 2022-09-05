@@ -74,15 +74,9 @@ export function move(gameState: GameState): MoveResponse {
     // Use information in gameState to seek out and find food.
     const foods = gameState.board.food
     const hunger = gameState.you.health
-    
     let chasetail: boolean = false
-    let hungermode: boolean = false
-        if (hunger < 5) {
-            hungermode = true
-        }
     
-    possibleMoves = findFood(gameState, hungermode, foods, myHead, possibleMoves)
-
+    findFood(hunger, gameState, foods, myHead, possibleMoves)
     
     // implementing a smarter Movement
     if (hunger > 5){
@@ -148,7 +142,13 @@ export function move(gameState: GameState): MoveResponse {
     
 }
 
-function findFood(gameState: GameState, hungermode: boolean, foods: Coord[], myHead: Coord, possibleMoves: { [key: string]: boolean }): { [key: string]: boolean } {
+function findFood(hunger: number, gameState: GameState, foods: Coord[], myHead: Coord, possibleMoves: { [key: string]: boolean }): { [key: string]: boolean } {
+    let hungermode: boolean = false
+    if (hunger < 5) {
+        hungermode = true
+    }
+
+
     if (gameState.board.food.length != 0 && hungermode === true) {
         let isRight: boolean = false
         let isLeft: boolean = false
