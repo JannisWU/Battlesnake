@@ -36,6 +36,9 @@ export function move(gameState: GameState): MoveResponse {
     const boardHeight = gameState.board.height
     const minWidth = 0
     const minHeight = 0
+    const foods = gameState.board.food
+    const hunger = gameState.you.health
+    let chasetail: boolean = false
 
 
     if (myNeck.x < myHead.x) {
@@ -72,56 +75,10 @@ export function move(gameState: GameState): MoveResponse {
 
     // TODO: Step 4 - Find food.
     // Use information in gameState to seek out and find food.
-    const foods = gameState.board.food
-    const hunger = gameState.you.health
-    let chasetail: boolean = false
-    
-    findFood(hunger, gameState, foods, myHead, possibleMoves)
+    possibleMoves = findFood(hunger, gameState, foods, myHead, possibleMoves)
     
     // implementing a smarter Movement
-    if (hunger > 80){
-        chasetail = true
-        const mybody = gameState.you.body
-        possibleMoves = avoidWalls(myHead, boardWidth, possibleMoves, boardHeight, minWidth, minHeight)
-
-        if(chasetail = true) {
-            if ((mybody.some(Coord => Coord.x === (myHead.x - 1) && Coord.y === myHead.y)) && (mybody.some(Coord => Coord.x  === myHead.x && Coord.y === (myHead.y - 1)))){
-                possibleMoves = avoidMe(gameState, myHead, possibleMoves)
-            }  else if (mybody.some(Coord => Coord.x === (myHead.x - 1) && Coord.y === myHead.y)){
-                possibleMoves.right = false 
-                possibleMoves.left = false
-                possibleMoves.up = false 
-            } 
-
-            if ((mybody.some(Coord => Coord.x === (myHead.x + 1) && Coord.y === myHead.y)) && (mybody.some(Coord => Coord.x  === myHead.x && Coord.y === (myHead.y - 1)))){
-                possibleMoves = avoidMe(gameState, myHead, possibleMoves)
-            } else if (mybody.some(Coord => Coord.x  === myHead.x && Coord.y === (myHead.y - 1))){
-                possibleMoves.up = false 
-                possibleMoves.down = false
-                possibleMoves.left = false 
-            } 
-
-            if ((mybody.some(Coord => Coord.x === (myHead.x - 1) && Coord.y === myHead.y)) && (mybody.some(Coord => Coord.x === myHead.x && Coord.y === (myHead.y + 1)))){
-                possibleMoves = avoidMe(gameState, myHead, possibleMoves) 
-            } else if (mybody.some(Coord => Coord.x === myHead.x && Coord.y === (myHead.y + 1))){
-                possibleMoves.up = false 
-                possibleMoves.down = false
-                possibleMoves.right = false 
-            } 
-
-            if ((mybody.some(Coord => Coord.x === (myHead.x + 1) && Coord.y === myHead.y)) &&  (mybody.some(Coord => Coord.x === myHead.x && Coord.y === (myHead.y + 1)))){
-                possibleMoves = avoidMe(gameState, myHead, possibleMoves) 
-            } else if (mybody.some(Coord => Coord.x === (myHead.x + 1) && Coord.y === myHead.y)){
-                possibleMoves.left = false 
-                possibleMoves.right = false
-                possibleMoves.down = false
-            }
-            
-            
-        }
-        
-        
-    }
+    possibleMoves = chaseTail(hunger, chasetail, gameState, possibleMoves, myHead, boardWidth, boardHeight, minWidth, minHeight)
     
 
     
@@ -140,6 +97,53 @@ export function move(gameState: GameState): MoveResponse {
     return response
  
     
+}
+
+function chaseTail(hunger: number, chasetail: boolean, gameState: GameState, possibleMoves: { [key: string]: boolean }, myHead: Coord, boardWidth: number, boardHeight: number, minWidth: number, minHeight: number): { [key: string]: boolean } {
+    if (hunger > 80) {
+        chasetail = true
+        const mybody = gameState.you.body
+        possibleMoves = avoidWalls(myHead, boardWidth, possibleMoves, boardHeight, minWidth, minHeight)
+
+        if (chasetail = true) {
+            if ((mybody.some(Coord => Coord.x === (myHead.x - 1) && Coord.y === myHead.y)) && (mybody.some(Coord => Coord.x === myHead.x && Coord.y === (myHead.y - 1)))) {
+                possibleMoves = avoidMe(gameState, myHead, possibleMoves)
+            } else if (mybody.some(Coord => Coord.x === (myHead.x - 1) && Coord.y === myHead.y)) {
+                possibleMoves.right = false
+                possibleMoves.left = false
+                possibleMoves.up = false
+            }
+
+            if ((mybody.some(Coord => Coord.x === (myHead.x + 1) && Coord.y === myHead.y)) && (mybody.some(Coord => Coord.x === myHead.x && Coord.y === (myHead.y - 1)))) {
+                possibleMoves = avoidMe(gameState, myHead, possibleMoves)
+            } else if (mybody.some(Coord => Coord.x === myHead.x && Coord.y === (myHead.y - 1))) {
+                possibleMoves.up = false
+                possibleMoves.down = false
+                possibleMoves.left = false
+            }
+
+            if ((mybody.some(Coord => Coord.x === (myHead.x - 1) && Coord.y === myHead.y)) && (mybody.some(Coord => Coord.x === myHead.x && Coord.y === (myHead.y + 1)))) {
+                possibleMoves = avoidMe(gameState, myHead, possibleMoves)
+            } else if (mybody.some(Coord => Coord.x === myHead.x && Coord.y === (myHead.y + 1))) {
+                possibleMoves.up = false
+                possibleMoves.down = false
+                possibleMoves.right = false
+            }
+
+            if ((mybody.some(Coord => Coord.x === (myHead.x + 1) && Coord.y === myHead.y)) && (mybody.some(Coord => Coord.x === myHead.x && Coord.y === (myHead.y + 1)))) {
+                possibleMoves = avoidMe(gameState, myHead, possibleMoves)
+            } else if (mybody.some(Coord => Coord.x === (myHead.x + 1) && Coord.y === myHead.y)) {
+                possibleMoves.left = false
+                possibleMoves.right = false
+                possibleMoves.down = false
+            }
+
+
+        }
+
+
+    }
+    return  possibleMoves;
 }
 
 function findFood(hunger: number, gameState: GameState, foods: Coord[], myHead: Coord, possibleMoves: { [key: string]: boolean }): { [key: string]: boolean } {
